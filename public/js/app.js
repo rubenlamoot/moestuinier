@@ -1831,25 +1831,70 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "sliderHome",
   props: ['route'],
   data: function data() {
     return {
-      months: []
+      months: [],
+      d: new Date(),
+      currentMonth: 0,
+      loaded: false
     };
   },
   created: function created() {
+    this.currentMonth = this.d.getMonth();
     this.getMonths();
   },
   methods: {
     getMonths: function getMonths() {
+      var _this = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.route).then(function (response) {
         console.log(response.data.results);
+
+        for (var i in response.data.results) {
+          _this.months.push(response.data.results[i]);
+        }
+
+        _this.loaded = true;
+        console.log(_this.currentMonth);
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    nextSlide: function nextSlide() {
+      if (this.currentMonth === 11) {
+        this.currentMonth = 0;
+      } else {
+        this.currentMonth += 1;
+      }
+    },
+    previousSlide: function previousSlide() {
+      if (this.currentMonth === 0) {
+        this.currentMonth = 11;
+      } else {
+        this.currentMonth -= 1;
+      }
     }
   }
 });
@@ -37202,80 +37247,170 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "carousel-inner" }, [
-        _c("div", { staticClass: "carousel-item active" }, [
-          _c("img", {
-            staticClass: "homepic d-block w-100 img-fluid",
-            attrs: { src: "", alt: "" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "myCaption d-none d-md-block" }, [
-            _c("div", { staticClass: "captionText" }, [
-              _c("h2", { staticClass: "text-center txtMaand" }),
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass: "carousel slide",
+        attrs: {
+          id: "carouselHome",
+          "data-ride": "carousel",
+          "data-interval": "false"
+        }
+      },
+      [
+        _vm.loaded
+          ? _c("div", { staticClass: "carousel-inner" }, [
+              _c("div", { staticClass: "carousel-item active" }, [
+                _c("img", {
+                  staticClass: "homepic d-block w-100 img-fluid",
+                  attrs: {
+                    src: _vm.months[_vm.currentMonth].month_pic,
+                    alt: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "myCaption d-none d-md-block" }, [
+                  _c("div", { staticClass: "captionText" }, [
+                    _c("h2", { staticClass: "text-center txtMaand" }, [
+                      _vm._v(_vm._s(_vm.months[_vm.currentMonth].month))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-center m-0 tekstMaand" }, [
+                      _vm._v(_vm._s(_vm.months[_vm.currentMonth].month_text))
+                    ])
+                  ])
+                ])
+              ]),
               _vm._v(" "),
-              _c("p", { staticClass: "text-center m-0 tekstMaand" })
+              _c("div", { staticClass: "carousel-item" }, [
+                _c("img", {
+                  staticClass: "homepic d-block w-100 img-fluid",
+                  attrs: {
+                    src: _vm.months[_vm.currentMonth].month_pic,
+                    alt: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "myCaption d-none d-md-block" }, [
+                  _c("div", { staticClass: "captionText" }, [
+                    _c("h2", { staticClass: "text-center txtMaand" }, [
+                      _vm._v(_vm._s(_vm.months[_vm.currentMonth].month))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-center m-0 tekstMaand" }, [
+                      _vm._v(_vm._s(_vm.months[_vm.currentMonth].month_text))
+                    ])
+                  ])
+                ])
+              ])
             ])
-          ])
-        ]),
+          : _vm._e(),
         _vm._v(" "),
-        _c("div", { staticClass: "carousel-item" }, [
-          _c("img", {
-            staticClass: "homepic d-block w-100 img-fluid",
-            attrs: { src: "", alt: "" }
-          }),
+        _c(
+          "a",
+          {
+            staticClass: "mijncarousel d-none d-md-block",
+            attrs: {
+              href: "#carouselHome",
+              role: "button",
+              "data-slide": "prev"
+            },
+            on: { click: _vm.previousSlide }
+          },
+          [
+            _c("span", {
+              staticClass: "fas fa-chevron-circle-left fa-3x text-white",
+              attrs: { "aria-hidden": "true" }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "mijncarousel d-none d-md-block",
+            attrs: {
+              href: "#carouselHome",
+              role: "button",
+              "data-slide": "next"
+            },
+            on: { click: _vm.nextSlide }
+          },
+          [
+            _c("span", {
+              staticClass: "fas fa-chevron-circle-right fa-3x text-white",
+              attrs: { "aria-hidden": "true" }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _vm.loaded
+      ? _c("div", { staticClass: "mobile_slider d-md-none bg-light" }, [
+          _c("div", { staticClass: "d-flex" }, [
+            _c(
+              "a",
+              {
+                staticClass: "mijncarousel flex-fill text-right",
+                attrs: {
+                  href: "#carouselHome",
+                  role: "button",
+                  "data-slide": "prev"
+                },
+                on: { click: _vm.previousSlide }
+              },
+              [
+                _c("span", {
+                  staticClass:
+                    "fas fa-chevron-circle-left fa-3x text-secondary",
+                  attrs: { "aria-hidden": "true" }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")])
+              ]
+            ),
+            _vm._v(" "),
+            _c("h2", { staticClass: "text-center flex-fill txtMaand" }, [
+              _vm._v(_vm._s(_vm.months[_vm.currentMonth].month))
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "mijncarousel flex-fill",
+                attrs: {
+                  href: "#carouselHome",
+                  role: "button",
+                  "data-slide": "next"
+                },
+                on: { click: _vm.nextSlide }
+              },
+              [
+                _c("span", {
+                  staticClass:
+                    "fas fa-chevron-circle-right fa-3x text-secondary",
+                  attrs: { "aria-hidden": "true" }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
+              ]
+            )
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "myCaption d-none d-md-block" }, [
-            _c("div", { staticClass: "captionText" }, [
-              _c("h2", { staticClass: "text-center txtMaand" }),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-center m-0 tekstMaand" })
-            ])
+          _c("p", { staticClass: "text-center my-2 tekstMaand" }, [
+            _vm._v(_vm._s(_vm.months[_vm.currentMonth].month_text))
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "mijncarousel d-none d-md-block",
-          attrs: { href: "#carouselHome", role: "button", "data-slide": "prev" }
-        },
-        [
-          _c("span", {
-            staticClass: "fas fa-chevron-circle-left fa-3x text-white",
-            attrs: { "aria-hidden": "true" }
-          }),
-          _vm._v(" "),
-          _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "mijncarousel d-none d-md-block",
-          attrs: { href: "#carouselHome", role: "button", "data-slide": "next" }
-        },
-        [
-          _c("span", {
-            staticClass: "fas fa-chevron-circle-right fa-3x text-white",
-            attrs: { "aria-hidden": "true" }
-          }),
-          _vm._v(" "),
-          _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
-        ]
-      )
-    ])
-  }
-]
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49663,140 +49798,139 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 // window.onload(function () {
-var d = new Date();
-var maand = d.getMonth();
-var next_month = 0;
-var prev_month = 0;
-var arrayMaand = [];
-arrayMaand = vindMaand(maand);
-$(".txtMaand").html(arrayMaand[0]);
-$(".homepic").attr('src', arrayMaand[1]);
-$(".tekstMaand").html(arrayMaand[2]);
-$(".fa-chevron-circle-left").click(function () {
-  if (maand === 0) {
-    next_month = maand + 1;
-    prev_month = 11;
-  } else if (maand === 11) {
-    next_month = 0;
-    prev_month = maand - 1;
-  } else {
-    next_month = maand + 1;
-    prev_month = maand - 1;
-  }
 
-  arrayMaand = [];
-  arrayMaand = vindMaand(prev_month);
-  $(".txtMaand").html(arrayMaand[0]);
-  $(".homepic").attr('src', arrayMaand[1]);
-  $(".tekstMaand").html(arrayMaand[2]);
-  maand = prev_month;
-});
-$(".fa-chevron-circle-right").click(function () {
-  if (maand === 0) {
-    next_month = maand + 1;
-    prev_month = 11;
-  } else if (maand === 11) {
-    next_month = 0;
-    prev_month = maand - 1;
-  } else {
-    next_month = maand + 1;
-    prev_month = maand - 1;
-  }
+/*    var d = new Date();
+    var maand = d.getMonth();
+    var next_month = 0;
+    var prev_month = 0;
+    var arrayMaand = [];
 
-  arrayMaand = [];
-  arrayMaand = vindMaand(next_month);
-  $(".txtMaand").html(arrayMaand[0]);
-  $(".homepic").attr('src', arrayMaand[1]);
-  $(".tekstMaand").html(arrayMaand[2]);
-  maand = next_month;
-}); // });
+    arrayMaand = vindMaand(maand);
 
-function vindMaand(maandGetal) {
-  var str_maand;
-  var str_src;
-  var str_tekst;
-  var eenArray = [];
+    $(".txtMaand").html(arrayMaand[0]);
+    $(".homepic").attr('src', arrayMaand[1]);
+    $(".tekstMaand").html(arrayMaand[2]);
 
-  switch (maandGetal) {
-    case 0:
-      str_maand = 'Januari';
-      str_src = 'images/home/januari.jpg';
-      str_tekst = 'De lente lijkt nog heel ver weg, zo hartje winter. Maar bij een knetterend haardvuur plannen maken, zaden bestellen en dromen van een volle moestuin is eigenlijk ook een beetje moestuinieren - mentaal dan.';
-      break;
 
-    case 1:
-      str_maand = 'Februari';
-      str_src = 'images/home/februari.jpg';
-      str_tekst = 'Februari is de maand van de hoop: aan kleine dingetjes kun je zien dat de lente op komst is. Het lengen van de dagen, de eerste bloembollen die bovenkomen en nu en dan al eens een warme dag...';
-      break;
+    $(".fa-chevron-circle-left").click(function () {
+        if (maand === 0){
+            next_month = maand + 1;
+            prev_month = 11;
+        }
+        else if (maand === 11){
+            next_month = 0;
+            prev_month = maand - 1;
+        }
+        else{
+            next_month = maand + 1;
+            prev_month = maand - 1;
+        }
+        arrayMaand = [];
+        arrayMaand = vindMaand(prev_month);
 
-    case 2:
-      str_maand = 'Maart';
-      str_src = 'images/home/maart.jpg';
-      str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
-      break;
+        $(".txtMaand").html(arrayMaand[0]);
+        $(".homepic").attr('src', arrayMaand[1]);
+        $(".tekstMaand").html(arrayMaand[2]);
 
-    case 3:
-      str_maand = 'April';
-      str_src = 'images/home/april.JPG';
-      str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
-      break;
+        maand = prev_month;
+    });
 
-    case 4:
-      str_maand = 'Mei';
-      str_src = 'images/home/mei.JPG';
-      str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
-      break;
+    $(".fa-chevron-circle-right").click(function () {
+        if (maand === 0){
+            next_month = maand + 1;
+            prev_month = 11;
+        }
+        else if (maand === 11){
+            next_month = 0;
+            prev_month = maand - 1;
+        }
+        else{
+            next_month = maand + 1;
+            prev_month = maand - 1;
+        }
+        arrayMaand = [];
+        arrayMaand = vindMaand(next_month);
 
-    case 5:
-      str_maand = 'Juni';
-      str_src = 'images/home/juni.jpg';
-      str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
-      break;
+        $(".txtMaand").html(arrayMaand[0]);
+        $(".homepic").attr('src', arrayMaand[1]);
+        $(".tekstMaand").html(arrayMaand[2]);
 
-    case 6:
-      str_maand = 'Juli';
-      str_src = 'assets/images/juli.jpg';
-      str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
-      break;
+        maand = next_month;
+    });
+ // });
 
-    case 7:
-      str_maand = 'Augustus';
-      str_src = 'images/home/augustus.jpg';
-      str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
-      break;
-
-    case 8:
-      str_maand = 'September';
-      str_src = 'assets/images/september.jpg';
-      str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
-      break;
-
-    case 9:
-      str_maand = 'Oktober';
-      str_src = 'images/home/oktober.JPG';
-      str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
-      break;
-
-    case 10:
-      str_maand = 'November';
-      str_src = 'images/home/november.jpg';
-      str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
-      break;
-
-    case 11:
-      str_maand = 'December';
-      str_src = 'assets/images/december.jpg';
-      str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
-      break;
-  }
-
-  eenArray.push(str_maand);
-  eenArray.push(str_src);
-  eenArray.push(str_tekst);
-  return eenArray;
-}
-
+function vindMaand(maandGetal){
+    var str_maand;
+    var str_src;
+    var str_tekst;
+    var eenArray = [];
+    switch (maandGetal) {
+        case 0 :
+            str_maand = 'Januari';
+            str_src = 'images/home/januari.jpg';
+            str_tekst = 'De lente lijkt nog heel ver weg, zo hartje winter. Maar bij een knetterend haardvuur plannen maken, zaden bestellen en dromen van een volle moestuin is eigenlijk ook een beetje moestuinieren - mentaal dan.';
+            break;
+        case 1 :
+            str_maand = 'Februari';
+            str_src = 'images/home/februari.jpg';
+            str_tekst = 'Februari is de maand van de hoop: aan kleine dingetjes kun je zien dat de lente op komst is. Het lengen van de dagen, de eerste bloembollen die bovenkomen en nu en dan al eens een warme dag...';
+            break;
+        case 2 :
+            str_maand = 'Maart';
+            str_src = 'images/home/maart.jpg';
+            str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
+            break;
+        case 3 :
+            str_maand = 'April';
+            str_src = 'images/home/april.JPG';
+            str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
+            break;
+        case 4 :
+            str_maand = 'Mei';
+            str_src = 'images/home/mei.JPG';
+            str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
+            break;
+        case 5 :
+            str_maand = 'Juni';
+            str_src = 'images/home/juni.jpg';
+            str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
+            break;
+        case 6 :
+            str_maand = 'Juli';
+            str_src = 'assets/images/juli.jpg';
+            str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
+            break;
+        case 7 :
+            str_maand = 'Augustus';
+            str_src = 'images/home/augustus.jpg';
+            str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
+            break;
+        case 8 :
+            str_maand = 'September';
+            str_src = 'assets/images/september.jpg';
+            str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
+            break;
+        case 9 :
+            str_maand = 'Oktober';
+            str_src = 'images/home/oktober.JPG';
+            str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
+            break;
+        case 10 :
+            str_maand = 'November';
+            str_src = 'images/home/november.jpg';
+            str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
+            break;
+        case 11 :
+            str_maand = 'December';
+            str_src = 'assets/images/december.jpg';
+            str_tekst = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...';
+            break;
+    }
+    eenArray.push(str_maand);
+    eenArray.push(str_src);
+    eenArray.push(str_tekst);
+    return eenArray;
+}*/
 function goBack() {
   window.history.back();
 }

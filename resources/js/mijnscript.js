@@ -1,6 +1,6 @@
 
 // window.onload(function () {
-    var d = new Date();
+/*    var d = new Date();
     var maand = d.getMonth();
     var next_month = 0;
     var prev_month = 0;
@@ -131,7 +131,7 @@ function vindMaand(maandGetal){
     eenArray.push(str_src);
     eenArray.push(str_tekst);
     return eenArray;
-}
+}*/
 
 function goBack()
 {
