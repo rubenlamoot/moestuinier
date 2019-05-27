@@ -15,3 +15,6 @@
     <title>De Moestuinier</title>
 
 </head>
+<body class="bg-light">
+<div class="container-fluid" id="app">
+    <div class="row">

@@ -40,4 +40,26 @@ class User extends Authenticatable
     public function roles(){
         return $this->belongsToMany('App\Role');
     }
+
+    public function isAdmin()
+    {
+        if($this->isActive()){
+            foreach ($this->roles as $role){
+                if($role->pivot->role_id == 1){
+                    return true;
+                }
+            }
+            return false;
+        }else{
+            return false;
+        }
+
+    }
+    public function isActive(){
+        if($this->is_active == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
