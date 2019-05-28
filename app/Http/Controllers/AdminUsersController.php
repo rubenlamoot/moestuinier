@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Month;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 
-class AdminMonthsController extends Controller
+class AdminUsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,8 @@ class AdminMonthsController extends Controller
     public function index()
     {
         //
-        $months = Month::all();
-        return view('admin.months.index', compact('months'));
-
+        $users = User::orderBy('id', 'desc')->paginate(15);
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -61,8 +61,10 @@ class AdminMonthsController extends Controller
     public function edit($id)
     {
         //
-        $month = Month::findOrFail($id);
-        return view('admin.months.edit', compact('month'));
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -75,31 +77,6 @@ class AdminMonthsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $month = Month::findOrFail($id);
-        $input = $request->all();
-
-        if($file = $request->file('month_pic')){
-            $old_photo = $month->month_pic;
-            if($old_photo){
-                $old_file = "images/home/" . $old_photo;
-                if (file_exists($old_file)) {
-                    @unlink($old_file);
-                }
-                $name = time() . $file->getClientOriginalName();
-                $file->move('images/home', $name);
-                $input['month_pic'] = $name;
-            }else{
-                $name = time() . $file->getClientOriginalName();
-                $file->move('images/home', $name);
-                $input['month_pic'] = $name;
-            }
-        }else{
-            $input['month_pic'] = $month->month_pic;
-        }
-
-        $month->update($input);
-
-        return redirect('admin/months');
     }
 
     /**
@@ -111,10 +88,5 @@ class AdminMonthsController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function home(){
-        $months = Month::all();
-        return response()->JSON(['results' => $months]);
     }
 }

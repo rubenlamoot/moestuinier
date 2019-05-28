@@ -28,4 +28,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin','HomeController@index');
 
     Route::resource('/admin/months', 'AdminMonthsController');
+    Route::resource('/admin/users', 'AdminUsersController');
+
 });

@@ -1,10 +1,14 @@
 
         <header class="col-lg-3 col-xl-2 w-100 bg-light mynav d-flex flex-column align-items-center">
             <nav class="navbar navbar-expand-lg navbar-light d-flex flex-column mb-auto">
-                <a class="navbar-brand text-center" href="index.php">
-                    <img src="{{asset('images/home/logo_small.png')}}" width="100" height="100" class="" alt="logo">
-                    <h1 class="logo">De Moestuinier</h1>
-                </a>
+                @if (Auth::user()->isAdmin())
+                    <a class="navbar-brand text-center" href="admin">
+                    @else
+                    <a class="navbar-brand text-center" href="index.php">
+                    @endif
+                        <img src="{{asset('images/home/logo_small.png')}}" width="100" height="100" class="" alt="logo">
+                        <h1 class="logo">De Moestuinier</h1>
+                    </a>
                 @auth
                     <div class="d-flex flex-row">
                         <p class="pt-2">Welkom:</p>

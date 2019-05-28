@@ -3,7 +3,7 @@
         <div id="carouselHome" class="carousel slide" data-ride="carousel" data-interval="false">
             <div v-if="loaded" class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="homepic d-block w-100 img-fluid" v-bind:src="months[currentMonth].month_pic" alt="">
+                    <img class="homepic d-block w-100 img-fluid" v-bind:src="'images/home/' + months[currentMonth].month_pic" alt="">
 
                     <div class="myCaption d-none d-md-block">
                         <div class="captionText">
@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="homepic d-block w-100 img-fluid" v-bind:src="months[currentMonth].month_pic" alt="">
+                    <img class="homepic d-block w-100 img-fluid" v-bind:src="'images/home/' + months[currentMonth].month_pic" alt="">
                     <div class="myCaption d-none d-md-block">
                         <div class="captionText">
                             <h2 class="text-center txtMaand">{{months[currentMonth].month}}</h2>
@@ -76,7 +76,6 @@
                             this.months.push(response.data.results[i]);
                         }
                         this.loaded = true;
-                        console.log(this.currentMonth);
                     })
                     .catch(error => {
                         console.log(error);
@@ -101,6 +100,3 @@
     }
 </script>
 
-<style scoped>
-
-</style>

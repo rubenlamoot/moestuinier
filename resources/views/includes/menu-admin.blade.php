@@ -1,7 +1,7 @@
 
 <header class="col-lg-3 col-xl-2 w-100 bg-light mynav d-flex flex-column align-items-center">
     <nav class="navbar navbar-expand-lg navbar-light d-flex flex-column mb-auto">
-        <a class="navbar-brand text-center" href="index.php">
+        <a class="navbar-brand text-center" href="../">
             <img src="{{asset('images/home/logo_small.png')}}" width="100" height="100" class="" alt="logo">
             <h1 class="logo">De Moestuinier</h1>
         </a>
@@ -40,18 +40,13 @@
             <ul class="navbar-nav flex-column">
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="{{route('months.index')}}" id="" role="button">
-                        <i class="fas fa-home"></i>Teksten en foto's
+                        <i class="fas fa-home"></i>  Teksten en foto's
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="category.php" id="dropdownPlantgoed" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Plantgoed
+                    <a class="nav-link" href="{{route('users.index')}}" id="" role="button">
+                        <i class="fas fa-user"></i>  Gebruikers
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownPlantgoed">
-                        <a class="dropdown-item" href="category.php#myBreadcrumb">Aardappelen</a>
-                        <a class="dropdown-item" href="category.php#myBreadcrumb">Uien</a>
-                        <a class="dropdown-item" href="category.php#myBreadcrumb">Look</a>
-                    </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownKruiden" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
