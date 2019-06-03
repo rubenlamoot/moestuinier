@@ -25,6 +25,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt(123456),
             'remember_token' => Str::random(10),
             'privacy' => 1,
+            'address_id' => 2,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -37,6 +38,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt(123456),
             'remember_token' => Str::random(10),
             'privacy' => 1,
+            'address_id' => 3,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

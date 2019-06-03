@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('vat')->nullable();
             $table->boolean('newsletter')->default(0);
             $table->boolean('privacy');
+            $table->integer('address_id')->index()->unsigned();
             $table->rememberToken();
             $table->timestamps();
         });

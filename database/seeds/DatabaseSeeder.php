@@ -10,7 +10,7 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    protected $toTruncate = ['users', 'roles', 'role_user', 'months'];
+    protected $toTruncate = ['users', 'roles', 'role_user', 'months', 'countries', 'cities', 'addresses'];
 
     public function run()
     {
@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
         $this->call(MonthsTableSeeder::class);
+        $this->call(CountriesTableSeeder::class);
+        $this->call(CitiesTableSeeder::class);
+        $this->call(AddressesTableSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }

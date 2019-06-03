@@ -64,10 +64,7 @@
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 ml-lg-4 text-center">
-                <input class="form-control mr-sm-2 w-75" type="search" placeholder="Zoeken" aria-label="Search">
-                <i class="fas fa-search"></i>
-            </form>
+
             <ul class="list-unstyled pr-4">
                 <li class="nav-item">
                     <a class="nav-link text-secondary" href="category.php#myBreadcrumb">Nieuw</a>

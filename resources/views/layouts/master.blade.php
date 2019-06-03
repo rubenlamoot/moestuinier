@@ -6,4 +6,5 @@
 
 @yield('content')
 
+
 @include('includes.javascript')

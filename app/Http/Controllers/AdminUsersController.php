@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
+use App\City;
+use App\Country;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -63,13 +66,14 @@ class AdminUsersController extends Controller
         //
         $user = User::findOrFail($id);
         $roles = Role::all();
+        $countries = Country::all();
         $user_roles = $user->roles;
         $roles_array = [];
         foreach ($user_roles as $user_role){
             array_push($roles_array, $user_role->id);
         }
 
-        return view('admin.users.edit', compact('user', 'roles', 'roles_array'));
+        return view('admin.users.edit', compact('user', 'roles', 'roles_array', 'countries'));
     }
 
     /**
@@ -82,12 +86,25 @@ class AdminUsersController extends Controller
     public function update(Request $request, $id)
     {
         //
+
         $user = User::findOrFail($id);
 
+        // update de rollen
         $roles = $request->roles;
         $user->roles()->sync($roles);
 
-        $input = $request->all();
+        // update de stad
+        $city_input = $request->only('city', 'zip_code', 'country_id');
+        $city = City::firstOrCreate($city_input);
+
+        //update het adres
+        $address_input = $request->only('street', 'house_nr', 'bus_nr', 'country_id');
+        $address_input['city_id'] = $city->id;
+        $address = Address::firstOrCreate($address_input);
+
+        // update de gebruiker
+        $input = $request->except('roles','street', 'house_nr', 'bus_nr', 'city', 'zip_code', 'country_id');
+        $input['address_id'] = $address->id;
         $user->update($input);
 
         return redirect('admin/users');
