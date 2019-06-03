@@ -17,11 +17,15 @@ class RoleUserTableSeeder extends Seeder
             DB::table('role_user')->insert([
                 'role_id' => 2,
                 'user_id' => $x,
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
         };
         DB::table('role_user')->insert([
             'role_id' => 1,
             'user_id' => 7,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
     }

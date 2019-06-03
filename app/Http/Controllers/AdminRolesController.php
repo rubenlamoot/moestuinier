@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Role;
-use App\User;
 use Illuminate\Http\Request;
 
-class AdminUsersController extends Controller
+class AdminRolesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class AdminUsersController extends Controller
     public function index()
     {
         //
-        $users = User::orderBy('id', 'desc')->paginate(15);
-        return view('admin.users.index', compact('users'));
+        $roles = Role::all();
+        return view('admin.roles.index', compact('roles'));
     }
 
     /**
@@ -28,6 +27,8 @@ class AdminUsersController extends Controller
     public function create()
     {
         //
+        return view('admin.roles.create');
+
     }
 
     /**
@@ -39,6 +40,9 @@ class AdminUsersController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->all();
+        Role::create($input);
+        return redirect('admin\roles');
     }
 
     /**
@@ -61,15 +65,8 @@ class AdminUsersController extends Controller
     public function edit($id)
     {
         //
-        $user = User::findOrFail($id);
-        $roles = Role::all();
-        $user_roles = $user->roles;
-        $roles_array = [];
-        foreach ($user_roles as $user_role){
-            array_push($roles_array, $user_role->id);
-        }
-
-        return view('admin.users.edit', compact('user', 'roles', 'roles_array'));
+        $role = Role::findOrFail($id);
+        return view('admin.roles.edit', compact('role'));
     }
 
     /**
@@ -82,15 +79,11 @@ class AdminUsersController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user = User::findOrFail($id);
-
-        $roles = $request->roles;
-        $user->roles()->sync($roles);
-
+        $role = Role::findOrFail($id);
         $input = $request->all();
-        $user->update($input);
+        $role->update($input);
 
-        return redirect('admin/users');
+        return redirect('admin\roles');
 
     }
 
@@ -103,5 +96,12 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
+        $role = Role::findOrFail($id);
+
+        $role->users()->detach();
+
+        $role->delete();
+
+        return redirect('admin/roles');
     }
 }

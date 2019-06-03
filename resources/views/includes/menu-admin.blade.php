@@ -49,13 +49,9 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownKruiden" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Kruiden
+                    <a class="nav-link" href="{{route('roles.index')}}" id="" role="button">
+                        <i class="fas fa-toilet-paper"></i>  Rollen
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownKruiden">
-                        <a class="dropdown-item" href="category.php#myBreadcrumb">1-jarigen</a>
-                        <a class="dropdown-item" href="category.php#myBreadcrumb">Doorlevend</a>
-                    </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="category.php" id="dropdownAccessoires" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

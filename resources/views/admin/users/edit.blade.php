@@ -46,18 +46,16 @@
 
                     <div class="form-group">
                         <label for="is_active">Status:</label>
-                        <select id="is_active" class="form-control">
+                        <select id="is_active" name="is_active" class="form-control">
                             <option value="0" @if($user->is_active == 0) selected @endif> Niet actief </option>
                             <option value="1" @if($user->is_active == 1) selected @endif> Actief </option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="roles">Rollen:</label>
-                        <select id="roles" class="form-control">
+                        <select multiple id="roles" name="roles[]" class="form-control">
                             @foreach($roles as $role)
-                                @foreach($user->roles as $user_role)
-                                    <option value="{{$role->id}}" @if($user_role->id == $role->id) selected @endif> {{$role->name}} </option>
-                                @endforeach
+                                    <option value="{{$role->id}}" @if(in_array($role->id, $roles_array)) selected @endif> {{$role->name}} </option>
                             @endforeach
                         </select>
                     </div>
