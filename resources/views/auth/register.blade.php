@@ -98,50 +98,91 @@
 
         <div class="row mb-md-5">
             <div class="col-12 col-md-8" id="registerAccount">
-                <p>Indien je reeds een account hebt bij ons, gelieve in te loggen via de <a href="login.html#myBreadcrumb">login-pagina</a>.</p>
+                <p>Indien je reeds een account hebt bij ons, gelieve in te loggen via de <a href="{{route('login')}}">login-pagina</a>.</p>
                 <h3 class="text-uppercase text-secondary border-bottom border-secondary text-right pb-3">Persoonlijke gegevens</h3>
-                <form>
-                    <input type="text" class="form-control mb-2 mt-3" id="regFirstName" placeholder="Voornaam">
-                    <input type="text" class="form-control mb-2" id="regLastName" placeholder="Familienaam">
-                    <input type="email" class="form-control mb-2" id="regBillingEmail" placeholder="E-mail">
-                    <input type="tel" class="form-control mb-2" id="regPhoneNumber" placeholder="Telefoonnummer">
-                    <input type="text" class="form-control mb-2" id="regCompany" placeholder="Bedrijf">
-                    <input type="text" class="form-control mb-2" id="regBtwNumber" placeholder="BTW-nummer">
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+
+                    <input type="text" class="form-control mb-2 mt-3{{ $errors->has('first_name') ? ' is-invalid' : '' }}" id="first_name" name="first_name" placeholder="Voornaam" value="{{ old('first_name') }}" required>
+                    @if ($errors->has('first_name'))
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('first_name') }}</strong>
+                                    </span>
+                    @endif
+                    <input type="text" class="form-control mb-2{{ $errors->has('last_name') ? ' is-invalid' : '' }}" id="last_name" name="last_name" placeholder="Familienaam" value="{{ old('last_name') }}" required>
+                    @if ($errors->has('last_name'))
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('last_name') }}</strong>
+                                    </span>
+                    @endif
+                    <input type="email" class="form-control mb-2{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" name="email" placeholder="E-mail" value="{{ old('email') }}" required>
+                    @if ($errors->has('email'))
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                    @endif
+                    <input type="tel" class="form-control mb-2" id="phone" name="phone" placeholder="Telefoonnummer">
+                    <input type="text" class="form-control mb-2" id="company" name="company" placeholder="Bedrijf">
+                    <input type="text" class="form-control mb-2" id="vat" name="vat" placeholder="BTW-nummer">
 
                     <h3 class="text-uppercase text-secondary border-bottom border-secondary text-right mt-5 pb-3">Adres gegevens</h3>
-                    <input type="text" class="form-control mb-2 mt-3" id="regAddress" placeholder="Adres">
+                    <input type="text" class="form-control mb-2 mt-3{{ $errors->has('street') ? ' is-invalid' : '' }}" id="street" name="street" placeholder="Adres" value="{{ old('street') }}" required>
+                    @if ($errors->has('street'))
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('street') }}</strong>
+                                    </span>
+                    @endif
                     <div class="d-flex">
-                        <input type="text" class="form-control mb-2 mr-3" id="regHouseNumber" placeholder="Nummer">
-                        <input type="text" class="form-control mb-2 ml-3" id="regBoxNumber" placeholder="Bus">
+                        <input type="text" class="form-control mb-2 mr-3{{ $errors->has('house_nr') ? ' is-invalid' : '' }}" id="house_nr" name="house_nr" placeholder="Nummer" value="{{ old('house_nr') }}" required>
+                        @if ($errors->has('house_nr'))
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('house_nr') }}</strong>
+                                    </span>
+                        @endif
+                        <input type="text" class="form-control mb-2 ml-3" id="bus_nr" name="bus_nr" placeholder="Bus">
                     </div>
-                    <input type="text" class="form-control mb-2" id="regPostalCode" placeholder="Postcode">
-                    <input type="text" class="form-control mb-2" id="regCity" placeholder="Stad">
+                    <input type="text" class="form-control mb-2{{ $errors->has('postal_code') ? ' is-invalid' : '' }}" id="zip_code" placeholder="Postcode" name="zip_code" value="{{ old('zip_code') }}" required>
+                    @if ($errors->has('zip_code'))
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('zip_code') }}</strong>
+                                    </span>
+                    @endif
+                    <input type="text" class="form-control mb-2{{ $errors->has('city') ? ' is-invalid' : '' }}" id="city" placeholder="Stad" name="city" value="{{ old('city') }}" required>
                     <div class="form-group d-flex">
-                        <label for="regCountrySelect" class="pr-3 pt-1">Land:</label>
-                        <select class="form-control" id="regCountrySelect">
-                            <option selected value="1">België</option>
-                            <option value="2">Duitsland</option>
-                            <option value="3">Frankrijk</option>
-                            <option value="4">Luxemburg</option>
-                            <option value="5">Nederland</option>
+                        <label for="country" class="pr-3 pt-1">Land:</label>
+                        <select class="form-control" id="country" name="country">
+                            @foreach($countries as $country)
+                                <option value="{{$country->id}}">{{$country->country}}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <h3 class="text-uppercase text-secondary border-bottom border-secondary text-right mt-5 pb-3">Paswoord</h3>
-                    <input type="password" class="form-control mb-2 mt-3" id="regPassword" placeholder="Paswoord">
-                    <input type="password" class="form-control mb-3" id="regPassword2" placeholder="Bevestig je paswoord">
+                    <input type="password" class="form-control mb-2 mt-3{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" placeholder="Paswoord" name="password" required>
+                    @if ($errors->has('password'))
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                    @endif
+                    <input id="password-confirm" type="password" class="form-control mb-3" name="password_confirmation" placeholder="Bevestig je paswoord" required>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="newsLetterCheck">
-                        <label class="form-check-label" for="newsLetterCheck">
+                        <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter" value="1">
+                        <label class="form-check-label" for="newsletter">
                             Ik schrijf me in voor de nieuwsbrief.
                         </label>
                     </div>
                     <div class="form-check py-3">
-                        <input class="form-check-input" type="checkbox" value="" id="privacyCheck">
-                        <label class="form-check-label" for="privacyCheck">
+                        <input class="form-check-input{{ $errors->has('privacy') ? ' is-invalid' : '' }}" type="checkbox" id="privacy" name="privacy" value="1">
+                        <label class="form-check-label" for="privacy">
                             Ik heb het privacybeleid gelezen en goedgekeurd.
                         </label>
+                        @if ($errors->has('privacy'))
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('privacy') }}</strong>
+                                    </span>
+                        @endif
                     </div>
+
                     <button class="btn btn-dark text-uppercase" type="submit">account aanmaken</button>
                 </form>
             </div>

@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('index');
 });
+Route::post('newsletter', 'AdminUsersController@newsletter')->name('newsletter');
 
 Auth::routes();
 

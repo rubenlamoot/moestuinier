@@ -8,6 +8,7 @@ use App\Country;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminUsersController extends Controller
 {
@@ -120,5 +121,32 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function newsletter(Request $request){
+        $email = $request['newsEmail'];
+
+        $user = DB::table('users')->where('email', '=', $email)->first();
+
+        if($user){
+            DB::table('users')
+                ->where('id', $user->id)
+                ->update(array('newsletter' => 1));
+        }else{
+            DB::table('users')->insert([
+                'is_active' => 0,
+                'first_name' => '',
+                'last_name' => '',
+                'email' => $email,
+                'password' => '',
+                'privacy' => 0,
+                'newsletter' => 1,
+                'address_id' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+
+        return redirect()->back();
     }
 }

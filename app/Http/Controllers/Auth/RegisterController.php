@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Address;
+use App\City;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -28,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -49,9 +52,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'street' => ['required', 'string', 'max:255'],
+            'house_nr' => ['required', 'max:10'],
+            'zip_code' => ['required', 'string', 'max:20'],
+            'city' => ['required', 'string', 'max:255'],
+            'privacy' => ['accepted'],
         ]);
     }
 
@@ -63,10 +72,44 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+//        $city = new City();
+//        $city->zip_code = $data['zip_code'];
+//        $city->city = $data['city'];
+//        $city->country_id = $data['country_id'];
+
+        $city = City::firstOrCreate([
+            'zip_code' => $data['zip_code'],
+            'city' => $data['city'],
+            'country_id' => $data['country'],
+        ]);
+
+//        $address = new Address();
+//        $address->street = $data['street'];
+//        $address->house_nr = $data['house_nr'];
+//        $address->bus_nr = $data['bus_nr'];
+
+        $address = Address::firstOrCreate([
+            'street' => $data['street'],
+            'house_nr' => $data['house_nr'],
+            'bus_nr' => $data['bus_nr'],
+            'city_id' => $city->id,
+            'country_id' => $data['country'],
+        ]);
+        $news = Arr::has($data, 'newsletter');
+
+        $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'phone' => $data['phone'],
+            'company' => $data['company'],
+            'vat' => $data['vat'],
+            'privacy' => $data['privacy'],
+            'newsletter' => $news,
+            'address_id' => $address->id,
         ]);
+
+        return $user;
     }
 }

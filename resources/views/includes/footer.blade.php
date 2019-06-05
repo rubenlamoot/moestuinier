@@ -14,9 +14,10 @@
     <div class="col-12 col-sm-6 col-lg-5 col-xl-4 my-sm-3 pl-4 pl-sm-0">
         <h3 class="text-uppercase text-center">contact</h3>
         <p>Schrijf je in voor de nieuwsbrief:</p>
-        <form class="d-flex flex-row mb-3 border-bottom mb-sm-4 pb-sm-1">
+        <form class="d-flex flex-row mb-3 border-bottom mb-sm-4 pb-sm-1" method="post" action="{{route('newsletter')}}">
+            @csrf
             <div class="form-group">
-                <input type="email" class="form-control" id="newsletterEmail1" placeholder="Geef je e-mail in">
+                <input type="email" class="form-control" id="newsEmail" name="newsEmail" placeholder="Geef je e-mail in" required>
             </div>
             <button type="submit" class="btn btn-secondary h-75">Verstuur</button>
         </form>

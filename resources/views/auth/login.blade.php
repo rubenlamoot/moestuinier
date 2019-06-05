@@ -95,7 +95,7 @@
                 <h3 class="text-uppercase text-dark text-right py-3 pr-3 bg-secondary login">nieuwe klant</h3>
                 <p class="mt-3 pb-3 mb-auto">Maak een account aan bij onze winkel en ga vlugger door het checkout proces. Bovendien kan je meerdere leveringsadressen opslaan en je orders bekijken en volgen via je account. </p>
                 <div class="border-top border-secondary pt-3">
-                    <a class="btn btn-dark text-uppercase" href="register.html#myBreadcrumb">registreer</a>
+                    <a class="btn btn-dark text-uppercase" href="{{ route('register') }}">registreer</a>
                 </div>
             </div>
             <div class="col-12 col-md-6 d-flex flex-column">
