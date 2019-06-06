@@ -31,5 +31,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('/admin/months', 'AdminMonthsController');
     Route::resource('/admin/users', 'AdminUsersController');
     Route::resource('/admin/roles', 'AdminRolesController');
+    Route::resource('/admin/level1categories', 'Level1CategoryController');
+    Route::resource('/admin/level2categories', 'Level2CategoryController');
 
 });

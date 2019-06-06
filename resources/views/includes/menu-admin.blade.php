@@ -54,13 +54,13 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="category.php" id="dropdownAccessoires" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Accessoires
+                    <a class="nav-link dropdown-toggle" href="" id="category" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-clipboard-list"></i>  Categoriën
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownAccessoires">
-                        <a class="dropdown-item" href="category.php#myBreadcrumb">Gereedschap</a>
-                        <a class="dropdown-item" href="category.php#myBreadcrumb">Zaaitafels</a>
-                        <a class="dropdown-item" href="category.php#myBreadcrumb">Potgrond en mest</a>
+                    <div class="dropdown-menu" aria-labelledby="category">
+                        <a class="dropdown-item" href="{{route('level1categories.index')}}">Level1</a>
+                        <a class="dropdown-item" href="{{route('level2categories.index')}}">Level2</a>
+                        <a class="dropdown-item" href="">Level3</a>
                     </div>
                 </li>
             </ul>
