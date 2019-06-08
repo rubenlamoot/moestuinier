@@ -13,9 +13,9 @@ class Level1Category extends Model
 
     protected $fillable = ['name'];
 
-    protected $softCascade = ['level2'];
+    protected $softCascade = ['levels2'];
 
-    public function level2 (){
+    public function levels2 (){
         return $this->hasMany('App\Level2Category');
     }
 }

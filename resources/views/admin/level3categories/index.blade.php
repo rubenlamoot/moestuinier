@@ -2,7 +2,7 @@
 
 @section('content')
     <main class="col-lg-9 col-xl-10" id="maincontent">
-        <h2 class="mt-5">Level 2 categoriën</h2>
+        <h2 class="mt-5">Level 3 categoriën</h2>
 
         <div class="row">
             <div class="col-md-6">
@@ -17,14 +17,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if ($level2Cats)
-                        @foreach($level2Cats as $level2Cat)
+                    @if ($level3Cats)
+                        @foreach($level3Cats as $level3Cat)
                             <tr>
-                                <td>{{$level2Cat->id}}</td>
-                                <td><a href="{{route('level2categories.edit', $level2Cat->id)}}">{{$level2Cat->name}}</a></td>
-                                <td>{{$level2Cat->level1->name}}</td>
-                                <td>{{$level2Cat->created_at}}</td>
-                                <td>{{$level2Cat->updated_at}}</td>
+                                <td>{{$level3Cat->id}}</td>
+                                <td><a href="{{route('level3categories.edit', $level3Cat->id)}}">{{$level3Cat->name}}</a></td>
+                                <td>{{$level3Cat->level2->name}}</td>
+                                <td>{{$level3Cat->created_at}}</td>
+                                <td>{{$level3Cat->updated_at}}</td>
                             </tr>
                         @endforeach
                     @endif
@@ -33,7 +33,7 @@
             </div>
 
             <div class="col-md-6">
-                <form method="post" action="{{route('level2categories.update', $editCat->id)}}">
+                <form method="post" action="{{route('level3categories.update', $editCat->id)}}">
                     @method('PATCH')
                     @csrf
                     <div class="form-group">
@@ -41,17 +41,17 @@
                         <input type="text" class="form-control" id="name" name="name" value="{{$editCat->name}}">
                     </div>
                     <div class="form-group">
-                        <label for="level1Edit">Is subcategorie van:</label>
-                        <select id="level1Edit" name="level1_category_id" class="form-control">
-                            @foreach($level1Cats as $level1Cat)
-                                <option value="{{$level1Cat->id}}" @if($editCat->level1->id == $level1Cat->id) selected @endif> {{$level1Cat->name}} </option>
+                        <label for="level2Edit">Is subcategorie van:</label>
+                        <select id="level2Edit" name="level2_category_id" class="form-control">
+                            @foreach($level2Cats as $level2Cat)
+                                <option value="{{$level2Cat->id}}" @if($editCat->level2->id == $level2Cat->id) selected @endif> {{$level2Cat->name}} </option>
                             @endforeach
                         </select>
                     </div>
                     <button class="btn btn-success" type="submit">Wijzigen</button>
                 </form>
 
-                <form method="post" action="{{route('level2categories.store')}}">
+                <form method="post" action="{{route('level3categories.store')}}">
                     @method('POST')
                     @csrf
                     <div class="form-group mt-5">
@@ -59,10 +59,10 @@
                         <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group">
-                        <label for="level1Create">Is subcategorie van:</label>
-                        <select id="level1Create" name="level1_category_id" class="form-control">
-                            @foreach($level1Cats as $level1Cat)
-                                <option value="{{$level1Cat->id}}" @if($editCat->level1->id == $level1Cat->id) selected @endif> {{$level1Cat->name}} </option>
+                        <label for="level2Create">Is subcategorie van:</label>
+                        <select id="level2Create" name="level2_category_id" class="form-control">
+                            @foreach($level2Cats as $level2Cat)
+                                <option value="{{$level2Cat->id}}" @if($editCat->level2->id == $level2Cat->id) selected @endif> {{$level2Cat->name}} </option>
                             @endforeach
                         </select>
                     </div>

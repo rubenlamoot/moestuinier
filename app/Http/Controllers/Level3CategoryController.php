@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Level1Category;
 use App\Level2Category;
+use App\Level3Category;
 use Illuminate\Http\Request;
 
-class Level2CategoryController extends Controller
+class Level3CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,10 @@ class Level2CategoryController extends Controller
     public function index()
     {
         //
+        $level3Cats = Level3Category::all();
+        $editCat = Level3Category::first();
         $level2Cats = Level2Category::all();
-        $editCat = Level2Category::first();
-        $level1Cats = Level1Category::all();
-        return view('admin.level2categories.index', compact('level2Cats', 'editCat', 'level1Cats'));
+        return view('admin.level3categories.index', compact('level3Cats', 'editCat', 'level2Cats'));
     }
 
     /**
@@ -42,17 +42,17 @@ class Level2CategoryController extends Controller
     {
         //
         $input = $request->all();
-        Level2Category::create($input);
-        return redirect('admin\level2categories');
+        Level3Category::create($input);
+        return redirect('admin\level3categories');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Level2Category  $level2Category
+     * @param  \App\Level3Category  $level3Category
      * @return \Illuminate\Http\Response
      */
-    public function show(Level2Category $level2Category)
+    public function show(Level3Category $level3Category)
     {
         //
     }
@@ -60,39 +60,39 @@ class Level2CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Level2Category  $level2Category
+     * @param  \App\Level3Category  $level3Category
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
+        $level3Cats = Level3Category::all();
+        $editCat = Level3Category::findOrFail($id);
         $level2Cats = Level2Category::all();
-        $editCat = Level2Category::findOrFail($id);
-        $level1Cats = Level1Category::all();
-        return view('admin.level2categories.index', compact('level2Cats', 'editCat', 'level1Cats'));
+        return view('admin.level3categories.index', compact('level3Cats', 'editCat', 'level2Cats'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Level2Category  $level2Category
+     * @param  \App\Level3Category  $level3Category
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
-        $level2 = Level2Category::findOrFail($id);
+        $level3 = Level3Category::findOrFail($id);
         $input = $request->all();
-        $level2->update($input);
+        $level3->update($input);
 
-        return redirect('admin\level2categories');
+        return redirect('admin\level3categories');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Level2Category  $level2Category
+     * @param  \App\Level3Category  $level3Category
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

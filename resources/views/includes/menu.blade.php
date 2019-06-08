@@ -47,7 +47,27 @@
 
                 <div class="collapse navbar-collapse flex-column" id="navbarSupportedContent">
                     <ul class="navbar-nav flex-column">
-                        <li class="nav-item dropdown">
+                        @php($menus = \App\Level1Category::all())
+
+                            @foreach($menus as $menu)
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="" id="{{$menu->name}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{$menu->name}}
+                                    </a>
+                                    <div class="nav-item dropdown" aria-labelledby="{{$menu->name}}">
+                                        @foreach($menu->levels2 as $menu2)
+                                        <a class="nav-link dropdown-toggle" href="" id="{{$menu2->name}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$menu2->name}}</a>
+                                            <div class="dropdown-menu" aria-labelledby="{{$menu2->name}}">
+                                                @foreach($menu2->levels3 as $menu3)
+                                                    <a class="dropdown-item" href="">{{$menu3->name}}</a>
+
+                                                @endforeach
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </li>
+                                @endforeach
+                        {{--<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="category.php" id="dropdownZaadjes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Zaadjes
                             </a>
@@ -84,7 +104,8 @@
                                 <a class="dropdown-item" href="category.php#myBreadcrumb">Zaaitafels</a>
                                 <a class="dropdown-item" href="category.php#myBreadcrumb">Potgrond en mest</a>
                             </div>
-                        </li>
+                        </li>--}}
+
                     </ul>
                     <form class="form-inline my-2 ml-lg-4 text-center">
                         <input class="form-control mr-sm-2 w-75" type="search" placeholder="Zoeken" aria-label="Search">

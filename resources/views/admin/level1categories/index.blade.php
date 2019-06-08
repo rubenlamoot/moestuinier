@@ -38,7 +38,7 @@
                         <label for="name">Naam:</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{$editCat->name}}">
                     </div>
-                    <button class="btn btn-primary" type="submit">Wijzigen</button>
+                    <button class="btn btn-success" type="submit">Wijzigen</button>
                 </form>
             </div>
         </div>

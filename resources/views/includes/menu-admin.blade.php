@@ -60,7 +60,7 @@
                     <div class="dropdown-menu" aria-labelledby="category">
                         <a class="dropdown-item" href="{{route('level1categories.index')}}">Level1</a>
                         <a class="dropdown-item" href="{{route('level2categories.index')}}">Level2</a>
-                        <a class="dropdown-item" href="">Level3</a>
+                        <a class="dropdown-item" href="{{route('level3categories.index')}}">Level3</a>
                     </div>
                 </li>
             </ul>
