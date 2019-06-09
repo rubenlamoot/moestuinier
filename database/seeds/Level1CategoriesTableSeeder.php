@@ -13,9 +13,10 @@ class Level1CategoriesTableSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('level1_categories')->insert(['name' => 'Zaadjes', 'created_at' => now(), 'updated_at' => now()]);
-        DB::table('level1_categories')->insert(['name' => 'Plantgoed', 'created_at' => now(), 'updated_at' => now()]);
+        DB::table('level1_categories')->insert(['name' => 'Groenten', 'created_at' => now(), 'updated_at' => now()]);
+        DB::table('level1_categories')->insert(['name' => 'Fruit', 'created_at' => now(), 'updated_at' => now()]);
         DB::table('level1_categories')->insert(['name' => 'Kruiden', 'created_at' => now(), 'updated_at' => now()]);
+        DB::table('level1_categories')->insert(['name' => 'Plantgoed', 'created_at' => now(), 'updated_at' => now()]);
         DB::table('level1_categories')->insert(['name' => 'Accessoires', 'created_at' => now(), 'updated_at' => now()]);
     }
 }

@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 Route::post('newsletter', 'AdminUsersController@newsletter')->name('newsletter');
-Route::get('level1', 'MenuController@menu_level1')->name('level1');
+//Route::get('level1', 'MenuController@menu_level1')->name('level1');
 
 Auth::routes();
 
@@ -34,6 +34,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('/admin/roles', 'AdminRolesController');
     Route::resource('/admin/level1categories', 'Level1CategoryController');
     Route::resource('/admin/level2categories', 'Level2CategoryController');
-    Route::resource('/admin/level3categories', 'Level3CategoryController');
+    Route::resource('/admin/products', 'AdminProductsController');
 
 });

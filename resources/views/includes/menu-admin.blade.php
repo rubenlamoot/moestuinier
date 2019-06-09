@@ -60,7 +60,16 @@
                     <div class="dropdown-menu" aria-labelledby="category">
                         <a class="dropdown-item" href="{{route('level1categories.index')}}">Level1</a>
                         <a class="dropdown-item" href="{{route('level2categories.index')}}">Level2</a>
-                        <a class="dropdown-item" href="{{route('level3categories.index')}}">Level3</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="products" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-clipboard-list"></i>  Producten
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="products">
+                        <a class="dropdown-item" href="{{route('products.index')}}">Alle producten</a>
+                        <a class="dropdown-item" href="}{{route('products.create')}}">Product maken</a>
+                        <a class="dropdown-item" href="">Product wijzigen</a>
                     </div>
                 </li>
             </ul>

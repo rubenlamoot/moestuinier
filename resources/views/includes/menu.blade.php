@@ -54,15 +54,9 @@
                                     <a class="nav-link dropdown-toggle" href="" id="{{$menu->name}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         {{$menu->name}}
                                     </a>
-                                    <div class="nav-item dropdown" aria-labelledby="{{$menu->name}}">
+                                    <div class="dropdown-menu" aria-labelledby="{{$menu->name}}">
                                         @foreach($menu->levels2 as $menu2)
-                                        <a class="nav-link dropdown-toggle" href="" id="{{$menu2->name}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$menu2->name}}</a>
-                                            <div class="dropdown-menu" aria-labelledby="{{$menu2->name}}">
-                                                @foreach($menu2->levels3 as $menu3)
-                                                    <a class="dropdown-item" href="">{{$menu3->name}}</a>
-
-                                                @endforeach
-                                            </div>
+                                            <a class="dropdown-item" href="">{{$menu2->name}}</a>
                                         @endforeach
                                     </div>
                                 </li>
