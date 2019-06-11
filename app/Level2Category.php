@@ -20,8 +20,8 @@ class Level2Category extends Model
         return $this->belongsTo('App\Level1Category', 'level1_category_id');
     }
 
-    public function levels3()
+    public function products()
     {
-        return $this->hasMany('App\Level3Category');
+        return $this->hasMany('App\Product');
     }
 }

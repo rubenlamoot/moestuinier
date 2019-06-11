@@ -13,8 +13,8 @@ class Level3Category extends Model
 
     protected $fillable = ['name', 'level2_category_id'];
 
-    public function level2 ()
-    {
-        return $this->belongsTo('App\Level2Category', 'level2_category_id');
-    }
+//    public function level2 ()
+//    {
+//        return $this->belongsTo('App\Level2Category', 'level2_category_id');
+//    }
 }
