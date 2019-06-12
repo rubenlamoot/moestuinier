@@ -13,12 +13,11 @@ class SowsTableSeeder extends Seeder
     public function run()
     {
         //
-        for($x = 1; $x < 101; $x++){
-            DB::table('sows')->insert([
-                'product_id' => $x,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-        };
+
+        DB::table('sows')->insert([
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
     }
 }

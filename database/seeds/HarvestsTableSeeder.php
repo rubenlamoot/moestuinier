@@ -13,12 +13,9 @@ class HarvestsTableSeeder extends Seeder
     public function run()
     {
         //
-        for($x = 1; $x < 101; $x++){
-            DB::table('harvests')->insert([
-                'product_id' => $x,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-        };
+        DB::table('harvests')->insert([
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
     }
 }

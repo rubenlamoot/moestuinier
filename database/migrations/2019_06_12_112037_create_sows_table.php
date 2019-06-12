@@ -15,7 +15,7 @@ class CreateSowsTable extends Migration
     {
         Schema::create('sows', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id')->index()->unsigned();
+//            $table->integer('product_id')->index()->unsigned();
             $table->boolean('jan')->default(0);
             $table->boolean('feb')->default(0);
             $table->boolean('mar')->default(0);

@@ -22,6 +22,8 @@ class CreateProductsTable extends Migration
             $table->string('photo');
             $table->integer('stock');
             $table->boolean('new')->default(0);
+            $table->integer('sow_id')->unsigned()->index();
+            $table->integer('harvest_id')->unsigned()->index();
             $table->softDeletes();
             $table->timestamps();
         });

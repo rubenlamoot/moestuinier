@@ -31,6 +31,45 @@
 
                     <div class="d-flex flex-row">
                         <div class="form-group">
+                            <label for="sows">Zaaitabel:</label>
+                            <select multiple id="sows" name="sows[]" class="form-control">
+                                <option value="0">Kies de maanden:</option>
+                                <option value="jan">januari</option>
+                                <option value="feb">februari</option>
+                                <option value="mar">maart</option>
+                                <option value="apr"f>april</option>
+                                <option value="mai">mei</option>
+                                <option value="jun">juni</option>
+                                <option value="jul">juli</option>
+                                <option value="aug"f>augustus</option>
+                                <option value="sep">september</option>
+                                <option value="okt">oktober</option>
+                                <option value="nov">november</option>
+                                <option value="dec">december</option>
+                            </select>
+                        </div>
+                        <div class="form-group ml-5">
+                            <label for="harvests">Oogsttabel:</label>
+                            <select multiple id="harvests" name="harvests[]" class="form-control">
+                                <option value="0">Kies de maanden:</option>
+                                <option value="jan">januari</option>
+                                <option value="feb">februari</option>
+                                <option value="mar">maart</option>
+                                <option value="apr"f>april</option>
+                                <option value="mai">mei</option>
+                                <option value="jun">juni</option>
+                                <option value="jul">juli</option>
+                                <option value="aug"f>augustus</option>
+                                <option value="sep">september</option>
+                                <option value="okt">oktober</option>
+                                <option value="nov">november</option>
+                                <option value="dec">december</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row">
+                        <div class="form-group">
                             <label for="price">Prijs:</label>
                             <input type="text" class="form-control" id="price" name="price">
                         </div>

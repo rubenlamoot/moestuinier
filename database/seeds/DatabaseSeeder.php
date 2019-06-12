@@ -16,22 +16,22 @@ class DatabaseSeeder extends Seeder
     {
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-//        foreach ($this->toTruncate as $table){
-//            DB::table($table)->truncate();
-//        }
-//        $this->call(UsersTableSeeder::class);
-//        $this->call(RolesTableSeeder::class);
-//        $this->call(RoleUserTableSeeder::class);
-//        $this->call(MonthsTableSeeder::class);
-//        $this->call(CountriesTableSeeder::class);
-//        $this->call(CitiesTableSeeder::class);
-//        $this->call(AddressesTableSeeder::class);
-//        $this->call(Level1CategoriesTableSeeder::class);
-//        $this->call(Level2CategoriesTableSeeder::class);
-//        $this->call(ProductsTableSeeder::class);
-//        $this->call(TypesTableSeeder::class);
-//        $this->call(ProductTypeTableSeeder::class);
-//        $this->call(SowsTableSeeder::class);
+        foreach ($this->toTruncate as $table){
+            DB::table($table)->truncate();
+        }
+        $this->call(UsersTableSeeder::class);
+        $this->call(RolesTableSeeder::class);
+        $this->call(RoleUserTableSeeder::class);
+        $this->call(MonthsTableSeeder::class);
+        $this->call(CountriesTableSeeder::class);
+        $this->call(CitiesTableSeeder::class);
+        $this->call(AddressesTableSeeder::class);
+        $this->call(Level1CategoriesTableSeeder::class);
+        $this->call(Level2CategoriesTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
+        $this->call(TypesTableSeeder::class);
+        $this->call(ProductTypeTableSeeder::class);
+        $this->call(SowsTableSeeder::class);
         $this->call(HarvestsTableSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
