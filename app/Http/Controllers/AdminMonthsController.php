@@ -85,14 +85,10 @@ class AdminMonthsController extends Controller
                 if (file_exists($old_file)) {
                     @unlink($old_file);
                 }
-                $name = time() . $file->getClientOriginalName();
-                $file->move('images/home', $name);
-                $input['month_pic'] = $name;
-            }else{
-                $name = time() . $file->getClientOriginalName();
-                $file->move('images/home', $name);
-                $input['month_pic'] = $name;
             }
+            $name = time() . $file->getClientOriginalName();
+            $file->move('images/home', $name);
+            $input['month_pic'] = $name;
         }else{
             $input['month_pic'] = $month->month_pic;
         }

@@ -68,8 +68,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="products">
                         <a class="dropdown-item" href="{{route('products.index')}}">Alle producten</a>
-                        <a class="dropdown-item" href="}{{route('products.create')}}">Product maken</a>
-                        <a class="dropdown-item" href="">Product wijzigen</a>
+                        <a class="dropdown-item" href="{{route('products.create')}}">Product maken</a>
                     </div>
                 </li>
             </ul>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     //
-    protected $fillable = ['level2_category_id', 'name', 'description', 'price', 'photo', 'stock'];
+    protected $fillable = ['level2_category_id', 'name', 'description', 'price', 'photo', 'stock', 'new'];
 
     public function types(){
         return $this->belongsToMany('App\Type');

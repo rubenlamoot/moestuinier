@@ -72,21 +72,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-//        $city = new City();
-//        $city->zip_code = $data['zip_code'];
-//        $city->city = $data['city'];
-//        $city->country_id = $data['country_id'];
-
         $city = City::firstOrCreate([
             'zip_code' => $data['zip_code'],
             'city' => $data['city'],
             'country_id' => $data['country'],
         ]);
-
-//        $address = new Address();
-//        $address->street = $data['street'];
-//        $address->house_nr = $data['house_nr'];
-//        $address->bus_nr = $data['bus_nr'];
 
         $address = Address::firstOrCreate([
             'street' => $data['street'],

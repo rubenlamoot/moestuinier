@@ -14,6 +14,7 @@
                 <th scope="col">Type</th>
                 <th scope="col">Behoord tot subcategorie</th>
                 <th scope="col">Behoord tot hoofdcategorie</th>
+                <th scope="col">Nieuw</th>
                 <th scope="col">Created</th>
                 <th scope="col">Updated</th>
             </tr>
@@ -33,6 +34,7 @@
                         </td>
                         <td>{{$product->level2->name}}</td>
                         <td>{{$product->level2->level1->name}}</td>
+                        <td>{{$product->new == 1 ? 'Ja' : 'Nee'}}</td>
                         <td>{{$product->created_at}}</td>
                         <td>{{$product->updated_at}}</td>
                     </tr>

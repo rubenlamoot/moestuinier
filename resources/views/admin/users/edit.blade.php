@@ -11,37 +11,37 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="first_name">Voornaam:</label>
-                        <input type="text" class="form-control" id="first_name" name="first_name" value={{$user->first_name}}>
+                        <input type="text" class="form-control" id="first_name" name="first_name" value="{{$user->first_name}}">
                     </div>
 
                     <div class="form-group">
                         <label for="last_name">Familienaam:</label>
-                        <input type="text" class="form-control" id="last_name" name="last_name" value={{$user->last_name}}>
+                        <input type="text" class="form-control" id="last_name" name="last_name" value="{{$user->last_name}}">
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" name="email" value={{$user->email}}>
+                        <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}">
                     </div>
 
                     <div class="form-group">
                         <label for="password">Wachtwoord:</label>
-                        <input type="password" class="form-control" id="password" name="password" value={{$user->password}}>
+                        <input type="password" class="form-control" id="password" name="password" value="{{$user->password}}">
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Telefoon:</label>
-                        <input type="text" class="form-control" id="phone" name="phone" value={{$user->phone}}>
+                        <input type="text" class="form-control" id="phone" name="phone" value="{{$user->phone}}">
                     </div>
 
                     <div class="form-group">
                         <label for="company">Firmanaam:</label>
-                        <input type="text" class="form-control" id="company" name="company" value={{$user->company}}>
+                        <input type="text" class="form-control" id="company" name="company" value="{{$user->company}}">
                     </div>
 
                     <div class="form-group">
                         <label for="vat">BTW-nr:</label>
-                        <input type="text" class="form-control" id="vat" name="vat" value={{$user->vat}}>
+                        <input type="text" class="form-control" id="vat" name="vat" value="{{$user->vat}}">
                     </div>
 
                     <div class="form-group">
@@ -57,23 +57,23 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="street">Straat:</label>
-                        <input type="text" class="form-control" id="street" name="street" value={{$user->address->street}}>
+                        <input type="text" class="form-control" id="street" name="street" value="{{$user->address->street}}">
                     </div>
                     <div class="form-group">
                         <label for="house_nr">Huisnr:</label>
-                        <input type="text" class="form-control" id="house_nr" name="house_nr" value={{$user->address->house_nr}}>
+                        <input type="text" class="form-control" id="house_nr" name="house_nr" value="{{$user->address->house_nr}}">
                     </div>
                     <div class="form-group">
                         <label for="house_nr">Busnr:</label>
-                        <input type="text" class="form-control" id="bus_nr" name="bus_nr" value={{$user->address->bus_nr}}>
+                        <input type="text" class="form-control" id="bus_nr" name="bus_nr" value="{{$user->address->bus_nr}}">
                     </div>
                     <div class="form-group">
                         <label for="city">Stad:</label>
-                        <input type="text" class="form-control" id="city" name="city" value={{$user->address->city->city}}>
+                        <input type="text" class="form-control" id="city" name="city" value="{{$user->address->city->city}}">
                     </div>
                     <div class="form-group">
                         <label for="zip_code">Postcode:</label>
-                        <input type="text" class="form-control" id="zip_code" name="zip_code" value={{$user->address->city->zip_code}}>
+                        <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{$user->address->city->zip_code}}">
                     </div>
                     <div class="form-group">
                         <label for="countries">Land:</label>
