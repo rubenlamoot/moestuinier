@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
     //
+    use SoftDeletes;
+
     protected $fillable = ['level2_category_id', 'name', 'description', 'price', 'photo', 'stock', 'new', 'sow_id', 'harvest_id'];
 
     public function types(){
