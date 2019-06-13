@@ -6,10 +6,10 @@
                     @if (Auth::user()->isAdmin())
                         <a class="navbar-brand text-center" href="admin">
                     @else
-                        <a class="navbar-brand text-center" href="index.php">
+                        <a class="navbar-brand text-center" href="{{route('index')}}">
                     @endif
                 @else
-                        <a class="navbar-brand text-center" href="index.php">
+                        <a class="navbar-brand text-center" href="{{route('index')}}">
                 @endauth
                         <img src="{{asset('images/home/logo_small.png')}}" width="100" height="100" class="" alt="logo">
                         <h1 class="logo">De Moestuinier</h1>
@@ -56,7 +56,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="{{$menu->name}}">
                                         @foreach($menu->levels2 as $menu2)
-                                            <a class="dropdown-item" href="">{{$menu2->name}}</a>
+                                            <a class="dropdown-item" href="{{ route('showProducts', [$menu2->id, 8]) }}">{{$menu2->name}}</a>
                                         @endforeach
                                     </div>
                                 </li>

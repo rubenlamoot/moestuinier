@@ -13,9 +13,11 @@
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 Route::post('newsletter', 'AdminUsersController@newsletter')->name('newsletter');
 //Route::get('level1', 'MenuController@menu_level1')->name('level1');
+Route::get('showProducts/{id}/{page}', 'MenuController@showProducts')->name('showProducts');
+Route::get('product/{id}', 'MenuController@product')->name('product');
 
 Auth::routes();
 

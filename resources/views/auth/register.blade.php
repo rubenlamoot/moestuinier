@@ -239,4 +239,6 @@
             </div>
         </div>
     </main>
+    @include('includes.footer')
+</div>
 @endsection
