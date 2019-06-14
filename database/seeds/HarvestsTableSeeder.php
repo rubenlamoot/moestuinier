@@ -14,6 +14,9 @@ class HarvestsTableSeeder extends Seeder
     {
         //
         DB::table('harvests')->insert([
+            'jul' => 1,
+            'aug' => 1,
+            'sep' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);

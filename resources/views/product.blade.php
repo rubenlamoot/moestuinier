@@ -25,40 +25,34 @@
                 <div class="col-sm-8 ml-sm-0">
                     <h2>{{$product->name}}</h2>
                     <p>{{$product->description}}</p>
-                    <form class="mb-3">
+
+                    <form class="mb-3" action="{{route('cart_add', $product->id)}}" method="POST">
+                        @csrf
+                        {{--<input type="hidden" name="product" value="{{$product->id}}">--}}
                         <div class="input-group d-flex flex-column">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text d-flex inputZakje">
-                                    <input type="radio" aria-label="Radio button">
-                                    <p class="mb-0 w-100 text-left pl-2">1 zakje (25 zaadjes)</p>
-                                    <p class="prijs mb-0 flex-shrink-1">€ {{$product->price}}</p>
+                            @foreach ($product->types as $type)
+                                <div class="input-group-prepend d-flex flex-column">
+                                    <div class="input-group-text d-flex inputZakje">
+                                        <input type="checkbox" aria-label="checkbox" name="type" value="{{$type->name}}">
+                                        <p class="mb-0 w-100 text-left pl-2">{{$type->name}}</p>
+                                        <p class="prijs mb-0 flex-shrink-1">@if ($type->id == 2 || $type->id == 4) € {{number_format(($product->price * 2) - (($product->price * 2) *25 / 100), 2)}} @else  € {{$product->price}} @endif</p>
+                                    </div>
+                                    @if ($type->id == 2 || $type->id == 4)<p class="mb-0 text-right text-warning pKorting">25% korting op {{$type->name}}</p>@endif
                                 </div>
-                            </div>
-                            <div class="input-group-prepend d-flex flex-column">
-                                <div class="input-group-text d-flex inputZakje">
-                                    <input type="radio" aria-label="Radio button" checked>
-                                    <p class="mb-0 pl-2 w-100 text-left">1 zakje (50 zaadjes)</p>
-                                    <p class="prijs mb-0 flex-shrink-1">€ {{number_format(($product->price * 2) - (($product->price * 2) *25 / 100), 2)}}</p>
-                                </div>
-                                <p class="mb-0 text-right text-warning pKorting">25% korting op zakje met 50 zaadjes</p>
-                            </div>
+                            @endforeach
                             <p><br>Geschatte levertijd : vandaag voor 22u besteld, morgen in huis.</p>
                         </div>
+
                         <div class="kiesWinkel d-flex flex-row">
-                            <select class="custom-select kiesAantal mr-2">
-                                <option selected value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
+                            <select class="custom-select kiesAantal mr-2" name="pieces">
+                                @for ($i = 1; $i < 21; $i++)
+                                    <option value="{{$i}}">{{$i}}</option>
+                                @endfor
                             </select>
-                            <a class="btn btn-primary" href="cart.html#myBreadcrumb">Toevoegen aan winkelwagen</a>
+                            <button class="btn btn-primary" type="submit">Toevoegen aan winkelwagen</button>
                         </div>
                     </form>
+
                     <div id="zaaiOogst" class="border border-secondary">
                         <div class="d-flex flex-row mt-3">
                             <p class="pZaai mr-2 pl-2">Zaaien = &nbsp;</p>
@@ -128,87 +122,53 @@
                 <div class="col-12">
                     <div id="carouselProduct" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="row">
-                                    <div class="col-sm-6 col-lg-3 mb-2">
-                                        <div class="card d-flex flex-row flex-lg-column card_product">
-                                            <img class="card-img-top img-product img-fluid" src="assets/images/tomaat_badro.jpg" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h3 class="card-title productName">Vleestomaat 'Badro F1'</h3>
-                                                <p class="card-text prijs">€ 6.99</p>
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        @php($total = count($related_products))
+                                        @if($total < 4)
+                                            @for ($i = 0; $i < $total; $i++)
+                                            <div class="col-sm-6 col-lg-3 mb-2">
+                                                <div class="card d-flex flex-row flex-lg-column card_product">
+                                                    <img class="card-img-top img-product img-fluid" src="{{asset('images/products/' . $related_products[$i]['photo'])}}" alt="{{$related_products[$i]['name']}}">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title productName">{{$related_products[$i]['name']}}</h3>
+                                                        <p class="card-text prijs">€ {{$related_products[$i]['price']}}</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-lg-3 mb-2">
-                                        <div class="card d-flex flex-row flex-lg-column card_product">
-                                            <img class="card-img-top img-product img-fluid" src="assets/images/tomaat_cherry.jpg" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h3 class="card-title productName">Kersttomaten 'Cherry'</h3>
-                                                <p class="card-text prijs">€ 5.99</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-lg-3 mb-2">
-                                        <div class="card d-flex flex-row flex-lg-column card_product">
-                                            <img class="card-img-top img-product img-fluid" src="assets/images/tomaat_whitebeef.jpg" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h3 class="card-title productName">Vleestomaat 'White beefsteak'</h3>
-                                                <p class="card-text prijs">€ 6.99</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-lg-3 mb-2">
-                                        <div class="card d-flex flex-row flex-lg-column card_product">
-                                            <img class="card-img-top img-product img-fluid" src="assets/images/tomaat_pyros.jpg" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h3 class="card-title productName">Tomaat 'Pyros F1'</h3>
-                                                <p class="card-text prijs">€ 4.50</p>
-                                            </div>
-                                        </div>
+                                            @endfor
+                                        @else
+                                            @for ($i = 0; $i < 4; $i++)
+                                                <div class="col-sm-6 col-lg-3 mb-2">
+                                                    <div class="card d-flex flex-row flex-lg-column card_product">
+                                                        <img class="card-img-top img-product img-fluid" src="{{asset('images/products/' . $related_products[$i]['photo'])}}" alt="{{$related_products[$i]['name']}}">
+                                                        <div class="card-body">
+                                                            <h3 class="card-title productName">{{$related_products[$i]['name']}}</h3>
+                                                            <p class="card-text prijs">€ {{$related_products[$i]['price']}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endfor
+                                        @endif
                                     </div>
                                 </div>
-                            </div>
-
+                            @if ($total > 4 && $total <= 8)
                             <div class="carousel-item">
                                 <div class="row">
-                                    <div class="col-sm-6 col-lg-3 mb-2">
-                                        <div class="card d-flex flex-row flex-lg-column card_product">
-                                            <img class="card-img-top img-product img-fluid" src="assets/images/tomaat_indigo.jpg" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h3 class="card-title productName">Tomaat 'Indigo Rose'</h3>
-                                                <p class="card-text prijs">€ 3.99</p>
+                                        @for ($i = 4; $i < $total; $i++)
+                                            <div class="col-sm-6 col-lg-3 mb-2">
+                                                <div class="card d-flex flex-row flex-lg-column card_product">
+                                                    <img class="card-img-top img-product img-fluid" src="{{asset('images/products/' . $related_products[$i]['photo'])}}" alt="{{$related_products[$i]['name']}}">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title productName">{{$related_products[$i]['name']}}</h3>
+                                                        <p class="card-text prijs">€ {{$related_products[$i]['price']}}</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-lg-3 mb-2">
-                                        <div class="card d-flex flex-row flex-lg-column card_product">
-                                            <img class="card-img-top img-product img-fluid" src="assets/images/tomaat_yellowpear.jpg" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h3 class="card-title productName">Tomaat 'Yellow Pearshaped'</h3>
-                                                <p class="card-text prijs">€ 2.25</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-lg-3 mb-2">
-                                        <div class="card d-flex flex-row flex-lg-column card_product">
-                                            <img class="card-img-top img-product img-fluid" src="assets/images/tomaat_modus.jpg" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h3 class="card-title productName">Snacktomaat 'Modus'</h3>
-                                                <p class="card-text prijs">€ 4.50</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-lg-3 mb-2">
-                                        <div class="card d-flex flex-row flex-lg-column card_product">
-                                            <img class="card-img-top img-product img-fluid" src="assets/images/tomaat_tumbling.jpg" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h3 class="card-title productName">Tomaat 'Tumbling Jester'</h3>
-                                                <p class="card-text prijs">€ 3.99</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        @endfor
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

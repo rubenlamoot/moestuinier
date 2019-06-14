@@ -15,6 +15,9 @@ class SowsTableSeeder extends Seeder
         //
 
         DB::table('sows')->insert([
+            'mar' => 1,
+            'apr' => 1,
+            'mai' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);

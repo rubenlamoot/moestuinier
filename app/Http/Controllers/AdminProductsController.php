@@ -9,7 +9,6 @@ use App\Sow;
 use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 
 class AdminProductsController extends Controller
 {

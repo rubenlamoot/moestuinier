@@ -4,7 +4,7 @@
     <div class="col-lg-9 col-xl-10">
         <main id="maincontent">
             <div id="shop_menu" class="d-flex justify-content-end my-3 pr-5 w-100">
-                <a href="cart.html"><i class="fas fa-shopping-cart pt-1 pr-2 text-secondary"></i></a>
+                <a href="{{route('cart')}}"><i class="fas fa-shopping-cart pt-1 pr-2 text-secondary"></i></a>
                 <p class="pr-2">Producten: </p>
                 <p id="aantal" class="pr-3">3</p>
                 <p class="subTotal">€ 12.48</p>
@@ -110,7 +110,7 @@
                     {{--</ul>--}}
                 {{--</nav>--}}
             </section>
-            </section>
+
         </main>
     @include('includes.footer')
     </div>
