@@ -16,12 +16,13 @@ Route::get('/', function () {
 })->name('index');
 Route::post('newsletter', 'AdminUsersController@newsletter')->name('newsletter');
 //Route::get('level1', 'MenuController@menu_level1')->name('level1');
-Route::get('showProducts/{id}/{page}', 'MenuController@showProducts')->name('showProducts');
+Route::get('showProducts/{id}', 'MenuController@showProducts')->name('showProducts');
 Route::get('product/{id}', 'MenuController@product')->name('product');
 Route::get('cart', 'MenuController@cart')->name('cart');
 Route::post('cart_add/{id}', 'MenuController@cart_add')->name('cart_add');
 Route::post('cart_update/{id}', 'MenuController@cart_update')->name('cart_update');
 Route::get('cart_delete/{id}', 'MenuController@cart_delete')->name('cart_delete');
+Route::post('shipmentCost', 'MenuController@shipmentCost')->name('shipmentCost');
 
 Auth::routes();
 

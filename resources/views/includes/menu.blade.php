@@ -56,7 +56,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="{{$menu->name}}">
                                         @foreach($menu->levels2 as $menu2)
-                                            <a class="dropdown-item" href="{{ route('showProducts', [$menu2->id, 8]) }}">{{$menu2->name}}</a>
+                                            <a class="dropdown-item" href="{{ route('showProducts', $menu2->id) }}">{{$menu2->name}}</a>
                                         @endforeach
                                     </div>
                                 </li>

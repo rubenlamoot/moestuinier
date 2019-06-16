@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
 use App\Level1Category;
 use App\Level2Category;
 use App\Product;
@@ -17,7 +18,9 @@ class MenuController extends Controller
         return view('includes.menu', compact('level1Cats'));
     }
 
-    public function showProducts($id, $items_page){
+    public function showProducts(Request $request, $id){
+
+        $items_page = ($request['pageSelect'] ? $request['pageSelect'] : 8);
 
         $products = Product::where('level2_category_id', $id)->paginate($items_page);
         $level2Cat = Level2Category::findOrFail($id);
@@ -61,5 +64,13 @@ class MenuController extends Controller
 
         Cart::remove($id);
         return view('cart');
+    }
+
+    public function shipmentCost(Request $request){
+
+        $ship_cost = Country::where('id', $request['country'])->first();
+
+        return view('cart', compact('ship_cost'));
+
     }
 }

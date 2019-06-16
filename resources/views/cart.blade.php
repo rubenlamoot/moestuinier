@@ -71,7 +71,6 @@
                             <form action="{{route('cart_update', $cart->rowId)}}" method="POST" name="addForm{{$cart->rowId}}">
                                 @csrf
                                 <div class="form-group col-md-2 d-flex">
-                                    {{--<input type="test" name="aantal" id="aantal" onchange="document.cartForm.submit()">--}}
                                     <label for="add_pieces"></label>
                                     <select class="custom-select kiesAantal mr-2" id="add_pieces" name="add_pieces" onchange="document.addForm{{$cart->rowId}}.submit()">
                                         @for ($i = 1; $i < 21; $i++)
@@ -108,16 +107,20 @@
                         <div class="tab-content" id="v-pills-tabContent">
                             <div class="tab-pane fade show active" id="pill_ship" role="tabpanel" aria-labelledby="pill_ship_tab">
                                 <p class="mt-3 my-sm-0">Geef een bestemming in om de verzendingskosten te berekenen</p>
-                                <form class="my-3">
-                                    <select class="form-control" id="countries">
-                                        <option selected value="1">België</option>
-                                        <option value="2">Duitsland</option>
-                                        <option value="3">Frankrijk</option>
-                                        <option value="4">Luxemburg</option>
-                                        <option value="5">Nederland</option>
+                                <form class="my-3" action="{{route('shipmentCost')}}" method="POST">
+                                    @csrf
+                                    @php($countries = \App\Country::all())
+                                    <select class="form-control" id="country" name="country">
+                                        @foreach($countries as $country)
+                                        <option value="{{$country->id}}">{{$country->country}}</option>
+                                        @endforeach
+                                        {{--<option value="2">Duitsland</option>--}}
+                                        {{--<option value="3">Frankrijk</option>--}}
+                                        {{--<option value="4">Luxemburg</option>--}}
+                                        {{--<option value="5">Nederland</option>--}}
                                     </select>
-                                    <input type="text" class="form-control mt-2" id="postCode" placeholder="Postcode/Zip">
-                                    <button class="btn btn-secondary mt-7 to-bottom" type="">Bereken</button>
+                                    <input type="text" class="form-control mt-2" id="postCode" name="postCode" placeholder="Postcode/Zip">
+                                    <button class="btn btn-secondary mt-7 to-bottom" type="submit">Bereken</button>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="pill_discount" role="tabpanel" aria-labelledby="pill_discount_tab">
@@ -146,9 +149,9 @@
                             </div>
                             <div class="col-4 px-0 border-left border-secondary text-center">
                                 <p class="subTotal border-bottom border-secondary mb-0 py-2">€ {{Cart::total()}}</p>
-                                <p class="shipCost border-bottom border-secondary mb-0 py-2">€ 7.00</p>
+                                <p class="shipCost border-bottom border-secondary mb-0 py-2">€ {{$ship_cost->shipment}}</p>
                                 <p class="discountVoucher border-bottom border-secondary mb-0 py-2">€ 0.00</p>
-                                <p class="Total prijs mb-0 py-2">€ {{Cart::total() + 7}}</p>
+                                <p class="Total prijs mb-0 py-2">€ {{Cart::total() + $ship_cost->shipment}}</p>
                             </div>
                         </div>
                         <div class="d-flex">

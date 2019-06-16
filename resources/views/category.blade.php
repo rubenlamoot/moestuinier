@@ -21,8 +21,8 @@
             <section id="pageNumberUp">
                 <div class="row mt-3">
                     <div class="col-12 col-sm-1 d-flex align-items-center">
-                        {{--@php($page = !empty($_GET['pageSelect']) ? (int)$_GET['pageSelect'] : 8)--}}
-                        <form action="{{route('showProducts', [$level2Cat->id, !empty($_GET['pageSelect']) ? (int)$_GET['pageSelect'] : 8])}}" method="GET" name="prodForm">
+
+                        <form action="{{route('showProducts', $level2Cat->id)}}" name="prodForm">
 
                             <div class="form-group">
                                 <label for="pageSelect">Toon:</label>
