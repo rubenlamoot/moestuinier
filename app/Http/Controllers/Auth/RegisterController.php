@@ -99,6 +99,7 @@ class RegisterController extends Controller
             'newsletter' => $news,
             'address_id' => $address->id,
         ]);
+        $user->roles()->attach(2);
 
         return $user;
     }

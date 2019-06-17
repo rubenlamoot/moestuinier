@@ -18,6 +18,13 @@ class MenuController extends Controller
         return view('includes.menu', compact('level1Cats'));
     }
 
+    public function searchProducts(Request $request){
+        $products = Product::where('name', 'like', '%' . $request->search . '%')->get();
+
+        return response()->JSON(['results' => $products]);
+
+    }
+
     public function showProducts(Request $request, $id){
 
         $items_page = ($request['pageSelect'] ? $request['pageSelect'] : 8);
@@ -36,7 +43,9 @@ class MenuController extends Controller
     }
 
     public function cart(){
-        return view('cart');
+        $myCountry = Country::where('id', 1)->first();
+        $ship_cost = '2.00';
+        return view('cart', compact('ship_cost', 'myCountry'));
     }
 
     public function cart_add(Request $request, $id){
@@ -50,27 +59,34 @@ class MenuController extends Controller
         }
         Cart::add($product->id, $product->name, $request['pieces'], $price, 0, ['type' => $request['type'], 'photo' => $product->photo]);
 //        dd(Cart::content());
-
-        return view('cart');
+        $myCountry = Country::where('id', 1)->first();
+        $ship_cost = '2.00';
+        return view('cart', compact('ship_cost', 'myCountry'));
     }
 
     public function cart_update(Request $request, $id){
 
         Cart::update($id, ['qty' => $request['add_pieces']]);
-        return view('cart');
+        $myCountry = Country::where('id', 1)->first();
+        $ship_cost = '2.00';
+        return view('cart', compact('ship_cost', 'myCountry'));
     }
 
     public function cart_delete($id){
 
         Cart::remove($id);
-        return view('cart');
+
+        $myCountry = Country::where('id', 1)->first();
+        $ship_cost = '2.00';
+        return view('cart', compact('ship_cost', 'myCountry'));
     }
 
     public function shipmentCost(Request $request){
 
-        $ship_cost = Country::where('id', $request['country'])->first();
+        $myCountry = Country::where('id', $request['country'])->first();
+        $ship_cost = $myCountry->shipment;
 
-        return view('cart', compact('ship_cost'));
+        return view('cart', compact('ship_cost', 'myCountry'));
 
     }
 }

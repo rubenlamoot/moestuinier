@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 Route::get('months', 'AdminMonthsController@home')->name('months.home');
+Route::post('searchProducts', 'MenuController@searchProducts')->name('searchProducts');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

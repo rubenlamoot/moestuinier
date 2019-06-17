@@ -9,6 +9,7 @@
                 <p id="aantal" class="pr-3">{{Cart::count()}}</p>
                 <p class="subTotal">€ {{Cart::total()}}</p>
             </div>
+
             <nav aria-label="breadcrumb" id="myBreadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('index')}}">Home</a></li>
@@ -32,13 +33,13 @@
                                 <p>Type</p>
                             </div>
                             <div class="col-md-2 pl-0">
-                                <p>Prijs/Stuk</p>
+                                <p>Prijs/Stuk (excl Btw)</p>
                             </div>
                             <div class="col-md-2 pl-2">
                                 <p>Aantal</p>
                             </div>
                             <div class="col-md-2 pl-0">
-                                <p>Subtotaal</p>
+                                <p>Subtotaal (incl Btw)</p>
                             </div>
                             <div class="col-md-2 pl-0">
 
@@ -64,7 +65,7 @@
                                 <p class="seeds mb-1">{{$cart->options->type}}</p>
                             </div>
                             <div class="col-md-2 d-flex flex-md-column">
-                                <p class="mb-1 d-md-none">Prijs : &nbsp;</p>
+                                <p class="mb-1 d-md-none">Prijs (excl Btw) : &nbsp;</p>
                                 <p class="unitPrice mb-1">€ {{$cart->price}}</p>
 
                             </div>
@@ -82,8 +83,8 @@
                             </form>
 
                             <div class="col-md-2 d-flex flex-md-column">
-                                <p class="mb-0 d-md-none">Subtotaal : &nbsp;</p>
-                                <p class="prijs text-right mr-3">€ {{$cart->price * $cart->qty}}</p>
+                                <p class="mb-0 d-md-none">Subtotaal (incl Btw) : &nbsp;</p>
+                                <p class="prijs text-right mr-3">€ {{ number_format($cart->total, 2) }}</p>
                             </div>
                             <div class="col-md-2 text-center">
                                 <a href="{{route('cart_delete', $cart->rowId)}}"><i class="fas fa-trash-alt fa-2x text-secondary d-none d-md-block"></i></a>
@@ -112,7 +113,7 @@
                                     @php($countries = \App\Country::all())
                                     <select class="form-control" id="country" name="country">
                                         @foreach($countries as $country)
-                                        <option value="{{$country->id}}">{{$country->country}}</option>
+                                        <option value="{{$country->id}}" @if($myCountry->id == $country->id) selected @endif>{{$country->country}}</option>
                                         @endforeach
                                         {{--<option value="2">Duitsland</option>--}}
                                         {{--<option value="3">Frankrijk</option>--}}
@@ -149,14 +150,14 @@
                             </div>
                             <div class="col-4 px-0 border-left border-secondary text-center">
                                 <p class="subTotal border-bottom border-secondary mb-0 py-2">€ {{Cart::total()}}</p>
-                                <p class="shipCost border-bottom border-secondary mb-0 py-2">€ {{$ship_cost->shipment}}</p>
+                                <p class="shipCost border-bottom border-secondary mb-0 py-2">€ {{$ship_cost}}</p>
                                 <p class="discountVoucher border-bottom border-secondary mb-0 py-2">€ 0.00</p>
-                                <p class="Total prijs mb-0 py-2">€ {{Cart::total() + $ship_cost->shipment}}</p>
+                                <p class="Total prijs mb-0 py-2">€ {{Cart::total() + $ship_cost}}</p>
                             </div>
                         </div>
                         <div class="d-flex">
                             <a href="{{route('index')}}" class="btn btn-secondary">Verder winkelen</a>
-                            <a href="checkout.html#myBreadcrumb" class="btn btn-secondary ml-auto">Checkout</a>
+                            <a href="{{route('step0')}}" class="btn btn-secondary ml-auto">Checkout</a>
                         </div>
                     </div>
                 </div>

@@ -6,8 +6,8 @@
             <div id="shop_menu" class="d-flex justify-content-end my-3 pr-5 w-100">
                 <a href="{{route('cart')}}"><i class="fas fa-shopping-cart pt-1 pr-2 text-secondary"></i></a>
                 <p class="pr-2">Producten: </p>
-                <p id="aantal" class="pr-3">3</p>
-                <p class="subTotal">€ 12.48</p>
+                <p id="aantal" class="pr-3">{{Cart::count()}}</p>
+                <p class="subTotal">€ {{Cart::total()}}</p>
             </div>
             <nav aria-label="breadcrumb" id="myBreadcrumb">
                 <ol class="breadcrumb">

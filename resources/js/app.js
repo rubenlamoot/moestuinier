@@ -23,6 +23,9 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('slider-home', require('./components/sliderHome.vue').default);
+Vue.component('search-bar', require('./components/searchBar.vue').default);
+// Vue.component('shopping-cart', require('./components/shoppingCart.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

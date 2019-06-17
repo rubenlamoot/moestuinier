@@ -82,14 +82,14 @@
 <div class="col-lg-9 col-xl-10">
     <main id="maincontent">
         <div id="shop_menu" class="d-flex justify-content-end my-3 pr-5 w-100">
-            <a href="cart.html"><i class="fas fa-shopping-cart pt-1 pr-2 text-secondary"></i></a>
+            <a href="{{route('cart')}}"><i class="fas fa-shopping-cart pt-1 pr-2 text-secondary"></i></a>
             <p class="pr-2">Producten: </p>
-            <p id="aantal" class="pr-3">3</p>
-            <p class="subTotal">€ 12.48</p>
+            <p id="aantal" class="pr-3">{{Cart::count()}}</p>
+            <p class="subTotal">€ {{Cart::total()}}</p>
         </div>
         <nav aria-label="breadcrumb" id="myBreadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{route('index')}}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Registreer Account</li>
             </ol>
         </nav>
@@ -151,6 +151,7 @@
                     <div class="form-group d-flex">
                         <label for="country" class="pr-3 pt-1">Land:</label>
                         <select class="form-control" id="country" name="country">
+                            @php($countries = \App\Country::all())
                             @foreach($countries as $country)
                                 <option value="{{$country->id}}">{{$country->country}}</option>
                             @endforeach

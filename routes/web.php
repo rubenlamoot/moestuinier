@@ -14,6 +14,11 @@
 Route::get('/', function () {
     return view('index');
 })->name('index');
+
+//Route::get('/checkout', function () {
+//    return view('checkout');
+//})->name('checkout');
+
 Route::post('newsletter', 'AdminUsersController@newsletter')->name('newsletter');
 //Route::get('level1', 'MenuController@menu_level1')->name('level1');
 Route::get('showProducts/{id}', 'MenuController@showProducts')->name('showProducts');
@@ -23,6 +28,9 @@ Route::post('cart_add/{id}', 'MenuController@cart_add')->name('cart_add');
 Route::post('cart_update/{id}', 'MenuController@cart_update')->name('cart_update');
 Route::get('cart_delete/{id}', 'MenuController@cart_delete')->name('cart_delete');
 Route::post('shipmentCost', 'MenuController@shipmentCost')->name('shipmentCost');
+
+Route::get('step0', 'CheckoutController@step0')->name('step0');
+Route::post('step1', 'CheckoutController@step1')->name('step1');
 
 Auth::routes();
 
