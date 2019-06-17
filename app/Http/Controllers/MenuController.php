@@ -25,6 +25,15 @@ class MenuController extends Controller
 
     }
 
+    public function showProduct($id){
+
+        $product = Product::findOrFail($id);
+        $related_products = Product::where('level2_category_id', '=', $product->level2_category_id)->whereNotIn('id', [$product->id])->get()->toArray();
+
+        return view('product', compact('product', 'related_products'));
+//        return response()->JSON(['results' => $product]);
+    }
+
     public function showProducts(Request $request, $id){
 
         $items_page = ($request['pageSelect'] ? $request['pageSelect'] : 8);

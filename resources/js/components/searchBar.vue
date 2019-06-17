@@ -4,8 +4,8 @@
             <input class="form-control mr-sm-2 w-75" v-model="search" id="search" type="text" placeholder="Zoeken" @keydown="searchProduct">
             <i class="fas fa-search"></i>
         </form>
-        <div v-for="result in results">
-            {{result.name}}
+        <div>
+            <p v-for="result in results" @click="showResults(result.id)">{{result.name}}</p>
         </div>
     </div>
 
@@ -41,10 +41,21 @@
                         })
                 }
             }, 250),
+
+            showResults(id){
+                console.log(id);
+                axios.get("./api/showProduct/" + id)
+                    .then(response =>{
+                        console.log(response.data.results);
+                    })
+            }
         }
     }
 </script>
 
 <style scoped>
+ p{
+     margin-bottom: 0px;
+ }
 
 </style>
