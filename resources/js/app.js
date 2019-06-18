@@ -6,8 +6,7 @@
 
 
 require('./bootstrap');
-require('./mijnscript');
-require('./datatables-demo');
+
 
 window.Vue = require('vue');
 

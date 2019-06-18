@@ -1,7 +1,7 @@
 
 <header class="col-lg-3 col-xl-2 w-100 bg-light mynav d-flex flex-column align-items-center">
     <nav class="navbar navbar-expand-lg navbar-light d-flex flex-column mb-auto">
-        <a class="navbar-brand text-center" href="../">
+        <a class="navbar-brand text-center" href="{{route('index')}}">
             <img src="{{asset('images/home/logo_small.png')}}" width="100" height="100" class="" alt="logo">
             <h1 class="logo">De Moestuinier</h1>
         </a>
@@ -69,21 +69,21 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" id="products" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-clipboard-list"></i>  Producten
+                        <i class="fas fa-seedling"></i>  Producten
                     </a>
                     <div class="dropdown-menu" aria-labelledby="products">
                         <a class="dropdown-item" href="{{route('products.index')}}">Alle producten</a>
                         <a class="dropdown-item" href="{{route('products.create')}}">Product maken</a>
                     </div>
                 </li>
-            </ul>
-
-            <ul class="list-unstyled pr-4">
-                <li class="nav-item">
-                    <a class="nav-link text-secondary" href="category.php#myBreadcrumb">Nieuw</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-secondary" href="category.php#myBreadcrumb">Populair</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="products" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-folder-open"></i> Orders
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="products">
+                        <a class="dropdown-item" href="">Alle orders</a>
+                        <a class="dropdown-item" href="">Onafgewerkte orders</a>
+                    </div>
                 </li>
             </ul>
         </div>

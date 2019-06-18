@@ -42,7 +42,7 @@ Route::group(['middleware' => 'active'], function () {
 });
 
 Route::group(['middleware' => 'admin'], function () {
-    Route::get('/admin','HomeController@index');
+    Route::get('/admin','HomeController@index')->name('admin');
 
     Route::resource('/admin/months', 'AdminMonthsController');
     Route::resource('/admin/users', 'AdminUsersController');

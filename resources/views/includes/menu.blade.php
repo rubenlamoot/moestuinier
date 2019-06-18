@@ -4,7 +4,7 @@
 
                 @auth
                     @if (Auth::user()->isAdmin())
-                        <a class="navbar-brand text-center" href="admin">
+                        <a class="navbar-brand text-center" href="{{route('admin')}}">
                     @else
                         <a class="navbar-brand text-center" href="{{route('index')}}">
                     @endif
@@ -60,46 +60,7 @@
                                         @endforeach
                                     </div>
                                 </li>
-                                @endforeach
-                        {{--<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="category.php" id="dropdownZaadjes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Zaadjes
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownZaadjes">
-                                <a class="dropdown-item" href="category.php#myBreadcrumb">Groenten</a>
-                                <a class="dropdown-item" href="category.php#myBreadcrumb">Fruit</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="category.php" id="dropdownPlantgoed" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Plantgoed
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownPlantgoed">
-                                <a class="dropdown-item" href="category.php#myBreadcrumb">Aardappelen</a>
-                                <a class="dropdown-item" href="category.php#myBreadcrumb">Uien</a>
-                                <a class="dropdown-item" href="category.php#myBreadcrumb">Look</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdownKruiden" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Kruiden
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownKruiden">
-                                <a class="dropdown-item" href="category.php#myBreadcrumb">1-jarigen</a>
-                                <a class="dropdown-item" href="category.php#myBreadcrumb">Doorlevend</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="category.php" id="dropdownAccessoires" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Accessoires
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownAccessoires">
-                                <a class="dropdown-item" href="category.php#myBreadcrumb">Gereedschap</a>
-                                <a class="dropdown-item" href="category.php#myBreadcrumb">Zaaitafels</a>
-                                <a class="dropdown-item" href="category.php#myBreadcrumb">Potgrond en mest</a>
-                            </div>
-                        </li>--}}
-
+                            @endforeach
                     </ul>
                     {{--<form class="form-inline my-2 ml-lg-4 text-center">--}}
                         {{--<input class="form-control mr-sm-2 w-75" type="search" placeholder="Zoeken" aria-label="Search">--}}

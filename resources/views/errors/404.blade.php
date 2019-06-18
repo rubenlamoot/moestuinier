@@ -21,7 +21,7 @@
                         <img src="{{asset('images/home/404.png')}}" alt="404" class="img-fluid">
                     </div>
                     <div class="col-12 my-3 text-center">
-                        <a class="btn btn-secondary text-uppercase" onclick="goBack()">terug</a>
+                        <a class="btn btn-secondary text-uppercase" href="{{ url()->previous() }}">terug</a>
                     </div>
                 </div>
             </div>
