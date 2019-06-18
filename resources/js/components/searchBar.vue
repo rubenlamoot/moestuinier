@@ -5,8 +5,7 @@
             <i class="fas fa-search"></i>
         </form>
         <div>
-            <p v-for="result in results" @click="showResults(result.id)">{{result.name}}</p>
-            <!--<a v-for="result in results" :key="result.id" href="{{route('product', result.id)}}">{{result.name}}</a>-->
+            <a v-for="result in results" :key="result.id" :href="'./product/' + result.id">{{result.name}} <br></a>
         </div>
     </div>
 
@@ -22,8 +21,6 @@
             return{
                 search:'',
                 results: '',
-                show: false,
-
             }
         },
         methods:{
@@ -35,7 +32,6 @@
                         .then(response => {
                             console.log(response.data.results);
                             this.results = response.data.results;
-                            this.show = true;
                         })
                         .catch(error => {
                             console.log(error);
@@ -43,20 +39,19 @@
                 }
             }, 250),
 
-            showResults(id){
-                console.log(id);
-                axios.get("http://localhost/moestuinier/public/product/" + id)
-                    .then(response =>{
-                        console.log(response.data.results);
-                    })
-            }
         }
     }
 </script>
 
 <style scoped>
- p{
-     margin-bottom: 0px;
- }
+    a:link {
+        text-decoration: none;
+        color: #4e555b;
+
+    }
+    a:visited {
+        text-decoration: none;
+        color: #4e555b;
+    }
 
 </style>

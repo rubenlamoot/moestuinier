@@ -66,7 +66,7 @@ class MenuController extends Controller
         }else{
             $price = $product->price;
         }
-        Cart::add($product->id, $product->name, $request['pieces'], $price, 0, ['type' => $request['type'], 'photo' => $product->photo]);
+        Cart::add($product->id, $product->name, $request['pieces'], $price, 0, ['type' => $request['type'], 'photo' => $product->photo, 'stock' => $product->stock]);
 //        dd(Cart::content());
         $myCountry = Country::where('id', 1)->first();
         $ship_cost = '2.00';

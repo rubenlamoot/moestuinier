@@ -40,16 +40,20 @@
                                     @if ($type->id == 2 || $type->id == 4)<p class="mb-0 text-right text-warning pKorting">25% korting op {{$type->name}}</p>@endif
                                 </div>
                             @endforeach
-                            <p><br>Geschatte levertijd : vandaag voor 22u besteld, morgen in huis.</p>
+                                @if ($product->stock == 0)
+                                    <p><br>Product tijdelijk uitverkocht</p>
+                                @else
+                                    <p><br>Geschatte levertijd : vandaag voor 22u besteld, morgen in huis.</p>
+                                @endif
                         </div>
 
                         <div class="kiesWinkel d-flex flex-row">
                             <select class="custom-select kiesAantal mr-2" name="pieces">
-                                @for ($i = 1; $i < 21; $i++)
+                                @for ($i = 1; $i < $product->stock + 1; $i++)
                                     <option value="{{$i}}">{{$i}}</option>
                                 @endfor
                             </select>
-                            <button class="btn btn-primary" type="submit">Toevoegen aan winkelwagen</button>
+                            <button class="btn btn-primary" type="submit" @if($product->stock == 0) disabled @endif>Toevoegen aan winkelwagen</button>
                         </div>
                     </form>
 

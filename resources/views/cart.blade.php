@@ -74,7 +74,7 @@
                                 <div class="form-group col-md-2 d-flex">
                                     <label for="add_pieces"></label>
                                     <select class="custom-select kiesAantal mr-2" id="add_pieces" name="add_pieces" onchange="document.addForm{{$cart->rowId}}.submit()">
-                                        @for ($i = 1; $i < 21; $i++)
+                                        @for ($i = 1; $i < $cart->options->stock + 1; $i++)
                                             <option value="{{$i}}" @if($cart->qty == $i) selected @endif>{{$i}}</option>
                                         @endfor
                                     </select>
@@ -115,10 +115,6 @@
                                         @foreach($countries as $country)
                                         <option value="{{$country->id}}" @if($myCountry->id == $country->id) selected @endif>{{$country->country}}</option>
                                         @endforeach
-                                        {{--<option value="2">Duitsland</option>--}}
-                                        {{--<option value="3">Frankrijk</option>--}}
-                                        {{--<option value="4">Luxemburg</option>--}}
-                                        {{--<option value="5">Nederland</option>--}}
                                     </select>
                                     <input type="text" class="form-control mt-2" id="postCode" name="postCode" placeholder="Postcode/Zip">
                                     <button class="btn btn-secondary mt-7 to-bottom" type="submit">Bereken</button>

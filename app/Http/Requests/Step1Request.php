@@ -25,23 +25,39 @@ class Step1Request extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::user()->id)],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'street' => ['required', 'string', 'max:255'],
-            'house_nr' => ['required', 'max:10'],
-            'zip_code' => ['required', 'string', 'max:20'],
-            'city' => ['required', 'string', 'max:255'],
-            'salesConditionCheck' => ['accepted'],
-            'privacy' => ['accepted']
-        ];
+        if(Auth::check()){
+            return [
+                'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::user()->id)],
+                'password' => ['required', 'string', 'min:6', 'confirmed'],
+                'first_name' => ['required', 'string', 'max:255'],
+                'last_name' => ['required', 'string', 'max:255'],
+                'street' => ['required', 'string', 'max:255'],
+                'house_nr' => ['required', 'max:10'],
+                'zip_code' => ['required', 'string', 'max:20'],
+                'city' => ['required', 'string', 'max:255'],
+                'salesConditionCheck' => ['accepted'],
+                'privacy' => ['accepted']
+            ];
+        }else{
+            return [
+                'email' => ['required', 'string', 'email', 'max:255'],
+                'password' => ['required', 'string', 'min:6', 'confirmed'],
+                'first_name' => ['required', 'string', 'max:255'],
+                'last_name' => ['required', 'string', 'max:255'],
+                'street' => ['required', 'string', 'max:255'],
+                'house_nr' => ['required', 'max:10'],
+                'zip_code' => ['required', 'string', 'max:20'],
+                'city' => ['required', 'string', 'max:255'],
+                'salesConditionCheck' => ['accepted'],
+                'privacy' => ['accepted']
+            ];
+        }
+
     }
     public function messages(){
         return [
-            'email.required' => 'Email bestaat reeds',
+            'email.unique' => 'Email bestaat reeds',
+            'email.required' => 'Email is verplicht',
             'first_name.required' => 'Voornaam is verplicht',
             'last_name.required' => 'Familienaam is verplicht',
             'street.required' => 'Straat is verplicht',

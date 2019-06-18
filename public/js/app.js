@@ -1811,7 +1811,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "searchBar",
@@ -1819,8 +1818,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       search: '',
-      results: '',
-      show: false
+      results: ''
     };
   },
   methods: {
@@ -1833,18 +1831,11 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (response) {
           console.log(response.data.results);
           _this.results = response.data.results;
-          _this.show = true;
         })["catch"](function (error) {
           console.log(error);
         });
       }
-    }, 250),
-    showResults: function showResults(id) {
-      console.log(id);
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost/moestuinier/public/product/" + id).then(function (response) {
-        console.log(response.data.results);
-      });
-    }
+    }, 250)
   }
 });
 
@@ -6420,7 +6411,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\np[data-v-38aaba10]{\n    margin-bottom: 0px;\n}\n\n", ""]);
+exports.push([module.i, "\na[data-v-38aaba10]:link {\n    text-decoration: none;\n    color: #4e555b;\n}\na[data-v-38aaba10]:visited {\n    text-decoration: none;\n    color: #4e555b;\n}\n\n", ""]);
 
 // exports
 
@@ -37986,15 +37977,9 @@ var render = function() {
       "div",
       _vm._l(_vm.results, function(result) {
         return _c(
-          "p",
-          {
-            on: {
-              click: function($event) {
-                return _vm.showResults(result.id)
-              }
-            }
-          },
-          [_vm._v(_vm._s(result.name))]
+          "a",
+          { key: result.id, attrs: { href: "./product/" + result.id } },
+          [_vm._v(_vm._s(result.name) + " "), _c("br")]
         )
       }),
       0
