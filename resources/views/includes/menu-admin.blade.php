@@ -54,6 +54,11 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
+                    <a class="nav-link" href="{{route('countries.index')}}" id="" role="button">
+                        <i class="fas fa-globe-americas"></i>  Landen
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" id="category" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-clipboard-list"></i>  Categoriën
                     </a>

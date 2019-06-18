@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 require('./mijnscript');
+require('./datatables-demo');
 
 window.Vue = require('vue');
 
@@ -36,3 +37,5 @@ Vue.component('search-bar', require('./components/searchBar.vue').default);
 const app = new Vue({
     el: '#app',
 });
+
+

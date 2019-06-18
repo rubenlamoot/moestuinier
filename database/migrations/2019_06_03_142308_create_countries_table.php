@@ -17,6 +17,7 @@ class CreateCountriesTable extends Migration
             $table->increments('id');
             $table->string('country');
             $table->decimal('shipment', 8, 2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

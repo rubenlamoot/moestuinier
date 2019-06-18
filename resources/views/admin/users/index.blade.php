@@ -4,7 +4,7 @@
     <main class="col-lg-9 col-xl-10" id="maincontent">
         <h2 class="mt-5">Alle gebruikers</h2>
 
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered" id="dataTable">
             <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -54,4 +54,5 @@
             </div>
         </div>
     </main>
+
 @stop

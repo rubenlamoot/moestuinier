@@ -50,5 +50,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('/admin/level1categories', 'Level1CategoryController');
     Route::resource('/admin/level2categories', 'Level2CategoryController');
     Route::resource('/admin/products', 'AdminProductsController');
+    Route::resource('/admin/countries', 'AdminCountriesController');
 
 });
