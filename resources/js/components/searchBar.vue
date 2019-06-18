@@ -6,6 +6,7 @@
         </form>
         <div>
             <p v-for="result in results" @click="showResults(result.id)">{{result.name}}</p>
+            <!--<a v-for="result in results" :key="result.id" href="{{route('product', result.id)}}">{{result.name}}</a>-->
         </div>
     </div>
 
@@ -44,7 +45,7 @@
 
             showResults(id){
                 console.log(id);
-                axios.get("./api/showProduct/" + id)
+                axios.get("http://localhost/moestuinier/public/product/" + id)
                     .then(response =>{
                         console.log(response.data.results);
                     })

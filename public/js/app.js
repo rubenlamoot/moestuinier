@@ -1811,6 +1811,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "searchBar",
@@ -1840,7 +1841,7 @@ __webpack_require__.r(__webpack_exports__);
     }, 250),
     showResults: function showResults(id) {
       console.log(id);
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("./api/showProduct/" + id).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost/moestuinier/public/product/" + id).then(function (response) {
         console.log(response.data.results);
       });
     }
