@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Harvest;
+use App\Http\Requests\ProductsRequest;
 use App\Level2Category;
 use App\Product;
 use App\Sow;
@@ -45,7 +46,7 @@ class AdminProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductsRequest $request)
     {
         //
         $input = $request->all();
@@ -137,7 +138,7 @@ class AdminProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductsRequest $request, $id)
     {
         //
         $product = Product::findOrFail($id);

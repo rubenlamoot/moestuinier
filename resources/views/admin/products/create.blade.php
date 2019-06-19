@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label for="level2_category_id">Behoord tot subcategorie:</label>
                         <select id="level2_category_id" name="level2_category_id" class="form-control">
-                            <option value="0" selected> Kies een optie </option>
+                            <option value="0"> Kies een optie </option>
                             @foreach($level2Cats as $level2Cat)
                                 <option value="{{$level2Cat->id}}"> {{$level2Cat->name}} </option>
                             @endforeach
@@ -37,11 +37,11 @@
                                 <option value="jan">januari</option>
                                 <option value="feb">februari</option>
                                 <option value="mar">maart</option>
-                                <option value="apr"f>april</option>
+                                <option value="apr">april</option>
                                 <option value="mai">mei</option>
                                 <option value="jun">juni</option>
                                 <option value="jul">juli</option>
-                                <option value="aug"f>augustus</option>
+                                <option value="aug">augustus</option>
                                 <option value="sep">september</option>
                                 <option value="okt">oktober</option>
                                 <option value="nov">november</option>
@@ -55,11 +55,11 @@
                                 <option value="jan">januari</option>
                                 <option value="feb">februari</option>
                                 <option value="mar">maart</option>
-                                <option value="apr"f>april</option>
+                                <option value="apr">april</option>
                                 <option value="mai">mei</option>
                                 <option value="jun">juni</option>
                                 <option value="jul">juli</option>
-                                <option value="aug"f>augustus</option>
+                                <option value="aug">augustus</option>
                                 <option value="sep">september</option>
                                 <option value="okt">oktober</option>
                                 <option value="nov">november</option>
@@ -87,7 +87,7 @@
                         <div class="form-group">
                             <label for="types">Type product:</label>
                             <select multiple id="types" name="types[]" class="form-control">
-                                <option value="0" selected> Kies: </option>
+                                <option value="0"> Kies: </option>
                                 @foreach($types as $type)
                                     <option value="{{$type->id}}"> {{$type->name}} </option>
                                 @endforeach
@@ -106,5 +106,6 @@
                 </div>
             </div>
         </form>
+        @include('errors.form-error')
     </main>
 @stop

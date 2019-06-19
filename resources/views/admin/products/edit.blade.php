@@ -111,5 +111,6 @@
                     </form>
                 </div>
             </div>
+        @include('errors.form-error')
     </main>
 @stop

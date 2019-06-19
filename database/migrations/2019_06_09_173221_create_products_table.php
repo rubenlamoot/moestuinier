@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->decimal('price', 8, 2);
             $table->string('photo');
-            $table->integer('stock');
+            $table->integer('stock')->default(0);
             $table->boolean('new')->default(0);
             $table->integer('sow_id')->unsigned()->index();
             $table->integer('harvest_id')->unsigned()->index();
