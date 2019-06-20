@@ -4,7 +4,7 @@
     <main class="col-lg-9 col-xl-10" id="maincontent">
         <h2 class="mt-5">Alle producten</h2>
 
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered" id="dataTable">
             <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -42,10 +42,6 @@
             @endif
             </tbody>
         </table>
-        <div class="row">
-            <div class="col-12">
-                {{$products->links()}}
-            </div>
-        </div>
+
     </main>
 @stop

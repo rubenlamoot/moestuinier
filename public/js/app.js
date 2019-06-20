@@ -54115,7 +54115,7 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("button", { on: { click: _vm.checkout } }, [_vm._v("Checkout")])
+      _c("button", { on: { click: _vm.checkout } }, [_vm._v("Betaal")])
     ],
     1
   )

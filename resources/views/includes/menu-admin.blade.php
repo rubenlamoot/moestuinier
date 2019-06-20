@@ -81,7 +81,7 @@
                         <i class="fas fa-folder-open"></i> Orders
                     </a>
                     <div class="dropdown-menu" aria-labelledby="products">
-                        <a class="dropdown-item" href="">Alle orders</a>
+                        <a class="dropdown-item" href="{{route('orders.index')}}">Alle orders</a>
                         <a class="dropdown-item" href="">Onafgewerkte orders</a>
                     </div>
                 </li>

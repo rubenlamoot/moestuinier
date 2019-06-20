@@ -363,53 +363,10 @@
                             </div>
                         </div>
                     </div>
-                    {{--<form action="{{route('toPay')}}" method="POST" id="checkout-form">--}}
-                        {{--{{csrf_field()}}--}}
-                        {{--<input type="hidden" name="stripeToken" id="stripeToken">--}}
-                        {{--<input type="hidden" name="stripeEmail" id="stripeEmail">--}}
-                        {{--<button type="submit" id="btnPay">Betaal</button>--}}
 
-                        {{--<script src="https://checkout.stripe.com/checkout.js"></script>--}}
-                        {{--<script>--}}
-                            {{--console.log('test');--}}
-                            {{--let stripe = StripeCheckout.configure({--}}
-                                {{--key: "{{config('services.stripe.key')}}",--}}
-                                {{--image: "https://stripe.com/img/documentation/checkout/marketplace.png",--}}
-                                {{--locale: 'auto',--}}
-                                {{--token: function (token) {--}}
-                                    {{--document.querySelector('#stripeEmail').value = token.email;--}}
-                                    {{--document.querySelector('#stripeToken').value = token.id;--}}
-                                    {{--document.querySelector('#checkout-form').submit();--}}
-                                {{--}--}}
-                            {{--});--}}
-
-                            {{--document.querySelector('#btnPay').addEventListener('click', function (e) {--}}
-                                {{--stripe.open({--}}
-                                    {{--name:'mijn product',--}}
-                                    {{--description:'beschrijving van product',--}}
-                                    {{--zipCode:false,--}}
-                                    {{--amount: 1000,--}}
-                                    {{--currency:'eur',--}}
-                                {{--});--}}
-                                {{--e.preventDefault();--}}
-                            {{--});--}}
-                        {{--</script>--}}
-                    {{--</form>--}}
                 </div>
             </section>
-            {{--<form action="{{route('toPay')}}" method="post">--}}
-                {{--@csrf--}}
-                {{--<script src="https://checkout.stripe.com/checkout.js" type="application/javascript"--}}
-                        {{--class="stripe-button"--}}
-                        {{--data-key="{{config('services.stripe.key')}}"--}}
-                        {{--data-name="mijnproducten"--}}
-                        {{--data-description="Access for a year"--}}
-                        {{--data-image="{{asset('images/home/logo.png')}}"--}}
-                        {{--data-amount="5000"--}}
-                        {{--data-locale="auto"--}}
-                        {{--data-currency="eur">--}}
-                {{--</script>--}}
-            {{--</form>--}}
+
         </main>
         @include('includes.footer')
     </div>

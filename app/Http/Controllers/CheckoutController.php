@@ -6,6 +6,8 @@ use App\Address;
 use App\City;
 use App\Country;
 use App\Http\Requests\Step1Request;
+use App\Order;
+use App\OrderItem;
 use App\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
@@ -82,7 +84,6 @@ class CheckoutController extends Controller
 
     public function store(){
 
-
         Stripe::setApiKey(config('services.stripe.secret'));
 
         $customer = Customer::create([
@@ -90,16 +91,34 @@ class CheckoutController extends Controller
             'source' => request('stripeItems.id'),
         ]);
 
-//        dd(Cart::total());
-        Charge::create([
+        $pay = Charge::create([
             'customer' => $customer->id,
             'amount' => Cart::total() * 100,
             'currency' => 'eur',
         ]);
 
-        Cart::destroy();
+        if($pay->paid == true){
+            $order = Order::create([
+                'user_id' => Auth::user()->id,
+                'delivery_id' => Auth::user()->address->id,
+                'items' => Cart::count(),
+                'totalprice' => Cart::total(),
+            ]);
+            foreach (Cart::content() as $cart){
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $cart->id,
+                    'quantity' => $cart->qty,
+                    'price' => $cart->price,
+                    'type' => $cart->options->type
+                ]);
+            }
+            Cart::destroy();
 
+            return response()->JSON(['overdracht gelukt']);
+        }else{
+            return response()->JSON(['overdracht mislukt']);
+        }
 
-        return response()->JSON(['overdracht gelukt']);
     }
 }
