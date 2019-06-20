@@ -6,9 +6,10 @@
 
 
 require('./bootstrap');
-
+require('datatables.net');
 
 window.Vue = require('vue');
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -24,7 +25,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('slider-home', require('./components/sliderHome.vue').default);
 Vue.component('search-bar', require('./components/searchBar.vue').default);
-// Vue.component('shopping-cart', require('./components/shoppingCart.vue').default);
+Vue.component('pay-stripe', require('./components/payStripe.vue').default);
 
 
 /**

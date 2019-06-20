@@ -7,8 +7,12 @@ use App\City;
 use App\Country;
 use App\Http\Requests\Step1Request;
 use App\User;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Stripe\Charge;
+use Stripe\Customer;
+use Stripe\Stripe;
 
 
 class CheckoutController extends Controller
@@ -68,5 +72,34 @@ class CheckoutController extends Controller
         }
 
         return view('checkout', compact('current', 'ship_cost'));
+    }
+
+    public function step3(){
+        $current = 4;
+        $ship_cost = "0.00";
+        return view('checkout', compact('current', 'ship_cost'));
+    }
+
+    public function store(){
+
+
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $customer = Customer::create([
+            'email' => request('stripeItems.email'),
+            'source' => request('stripeItems.id'),
+        ]);
+
+//        dd(Cart::total());
+        Charge::create([
+            'customer' => $customer->id,
+            'amount' => Cart::total() * 100,
+            'currency' => 'eur',
+        ]);
+
+        Cart::destroy();
+
+
+        return response()->JSON(['overdracht gelukt']);
     }
 }

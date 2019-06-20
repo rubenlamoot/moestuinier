@@ -217,42 +217,7 @@
                                     </div>
                                 </div>
                             </div>
-                            {{--<div class="card">--}}
-                                {{--<div class="card-header" id="headingFour">--}}
-                                    {{--<h2 class="mb-0">--}}
-                                        {{--<button class="btn btn-link collapsed w-100 d-flex" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">--}}
-                                            {{--<span class="text-secondary">Stap 4</span>--}}
-                                            {{--<span class="text-dark flex-grow-1 text-right">Leveringsmethode</span>--}}
-                                        {{--</button>--}}
-                                    {{--</h2>--}}
-                                {{--</div>--}}
-                                {{--<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion_Checkout">--}}
-                                    {{--<div class="card-body">--}}
-                                        {{--<h3 class="text-uppercase text-secondary border-bottom border-secondary text-right mt-3 mt-md-0 pb-3">Geef een keuze aan</h3>--}}
-                                        {{--<form class="mt-3">--}}
-                                            {{--<div class="form-check">--}}
-                                                {{--<input class="form-check-input" type="radio" name="delRadios" id="delPost" value="option1" checked>--}}
-                                                {{--<label class="form-check-label" for="delPost">--}}
-                                                    {{--Leveren met de post--}}
-                                                {{--</label>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="form-check">--}}
-                                                {{--<input class="form-check-input" type="radio" name="delRadios" id="delPostpunt" value="option2">--}}
-                                                {{--<label class="form-check-label" for="delPostpunt">--}}
-                                                    {{--Afhalen aan Postpunt--}}
-                                                {{--</label>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="form-check">--}}
-                                                {{--<input class="form-check-input" type="radio" name="delRadios" id="delKiala" value="option3">--}}
-                                                {{--<label class="form-check-label" for="delKiala">--}}
-                                                    {{--Afhalen aan Kialapunt--}}
-                                                {{--</label>--}}
-                                            {{--</div>--}}
-                                            {{--<button class="btn btn-dark text-uppercase mt-3" type="submit">ga verder</button>--}}
-                                        {{--</form>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
+
                             {{--<div class="card">--}}
                                 {{--<div class="card-header" id="headingThree">--}}
                                     {{--<h2 class="mb-0">--}}
@@ -374,15 +339,79 @@
                                                 <p class="Total prijs mb-0 py-2">€ {{Cart::total() + $ship_cost}}</p>
                                             </div>
                                         </div>
-                                        <button class="btn btn-dark text-uppercase float-right mb-3">naar betalen</button>
+                                        <a href="{{route('step3')}}" class="btn btn-dark text-uppercase float-right mb-3">naar betalen</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header" id="headingFour">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed w-100 d-flex" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            <span class="text-secondary">Stap 4</span>
+                                            <span class="text-dark flex-grow-1 text-right">Betalen</span>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseFour" class="collapse @if ($current == 4) show @endif " aria-labelledby="headingFour" data-parent="#accordion_Checkout">
+                                    <div class="card-body">
+                                        <h3 class="text-uppercase text-secondary border-bottom border-secondary text-right mt-3 mt-md-0 pb-3">Klik op de betaal knop</h3>
+
+                                    <pay-stripe route={{route('toPay')}} :cart-total={{Cart::total() * 100}}></pay-stripe>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {{--<form action="{{route('toPay')}}" method="POST" id="checkout-form">--}}
+                        {{--{{csrf_field()}}--}}
+                        {{--<input type="hidden" name="stripeToken" id="stripeToken">--}}
+                        {{--<input type="hidden" name="stripeEmail" id="stripeEmail">--}}
+                        {{--<button type="submit" id="btnPay">Betaal</button>--}}
+
+                        {{--<script src="https://checkout.stripe.com/checkout.js"></script>--}}
+                        {{--<script>--}}
+                            {{--console.log('test');--}}
+                            {{--let stripe = StripeCheckout.configure({--}}
+                                {{--key: "{{config('services.stripe.key')}}",--}}
+                                {{--image: "https://stripe.com/img/documentation/checkout/marketplace.png",--}}
+                                {{--locale: 'auto',--}}
+                                {{--token: function (token) {--}}
+                                    {{--document.querySelector('#stripeEmail').value = token.email;--}}
+                                    {{--document.querySelector('#stripeToken').value = token.id;--}}
+                                    {{--document.querySelector('#checkout-form').submit();--}}
+                                {{--}--}}
+                            {{--});--}}
+
+                            {{--document.querySelector('#btnPay').addEventListener('click', function (e) {--}}
+                                {{--stripe.open({--}}
+                                    {{--name:'mijn product',--}}
+                                    {{--description:'beschrijving van product',--}}
+                                    {{--zipCode:false,--}}
+                                    {{--amount: 1000,--}}
+                                    {{--currency:'eur',--}}
+                                {{--});--}}
+                                {{--e.preventDefault();--}}
+                            {{--});--}}
+                        {{--</script>--}}
+                    {{--</form>--}}
                 </div>
             </section>
+            {{--<form action="{{route('toPay')}}" method="post">--}}
+                {{--@csrf--}}
+                {{--<script src="https://checkout.stripe.com/checkout.js" type="application/javascript"--}}
+                        {{--class="stripe-button"--}}
+                        {{--data-key="{{config('services.stripe.key')}}"--}}
+                        {{--data-name="mijnproducten"--}}
+                        {{--data-description="Access for a year"--}}
+                        {{--data-image="{{asset('images/home/logo.png')}}"--}}
+                        {{--data-amount="5000"--}}
+                        {{--data-locale="auto"--}}
+                        {{--data-currency="eur">--}}
+                {{--</script>--}}
+            {{--</form>--}}
         </main>
         @include('includes.footer')
     </div>
+
 @stop

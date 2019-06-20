@@ -15,9 +15,10 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-//Route::get('/checkout', function () {
-//    return view('checkout');
-//})->name('checkout');
+Route::get('/thanks', function () {
+    return view('thanks');
+})->name('thanks');
+
 
 Route::post('newsletter', 'AdminUsersController@newsletter')->name('newsletter');
 //Route::get('level1', 'MenuController@menu_level1')->name('level1');
@@ -31,6 +32,8 @@ Route::post('shipmentCost', 'MenuController@shipmentCost')->name('shipmentCost')
 
 Route::get('step0', 'CheckoutController@step0')->name('step0');
 Route::post('step1', 'CheckoutController@step1')->name('step1');
+Route::get('step3', 'CheckoutController@step3')->name('step3');
+Route::post('toPay', 'CheckoutController@store')->name('toPay');
 
 Auth::routes();
 
