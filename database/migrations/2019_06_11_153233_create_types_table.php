@@ -16,6 +16,8 @@ class CreateTypesTable extends Migration
         Schema::create('types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->boolean('discount')->default(0);
+            $table->integer('percentage')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

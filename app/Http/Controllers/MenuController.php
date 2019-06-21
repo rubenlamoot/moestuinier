@@ -6,6 +6,7 @@ use App\Country;
 use App\Level1Category;
 use App\Level2Category;
 use App\Product;
+use App\Type;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,7 @@ class MenuController extends Controller
         $related_products = Product::where('level2_category_id', '=', $product->level2_category_id)->whereNotIn('id', [$product->id])->get()->toArray();
 
         return view('product', compact('product', 'related_products'));
-//        return response()->JSON(['results' => $product]);
+
     }
 
     public function showProducts(Request $request, $id){
@@ -60,13 +61,14 @@ class MenuController extends Controller
     public function cart_add(Request $request, $id){
 
         $product = Product::findOrFail($id);
+        $type = Type::findOrFail($request['type']);
 
-        if($request['type'] == 'zakje 50 zaadjes' || $request['type'] == 'zak 1 kg'){
-            $price = number_format(($product->price * 2) - (($product->price * 2) *25 / 100), 2);
+        if($type->discount == 1){
+            $price = number_format(($product->price * 2) - (($product->price * 2) * $type->percentage / 100), 2);
         }else{
             $price = $product->price;
         }
-        Cart::add($product->id, $product->name, $request['pieces'], $price, 0, ['type' => $request['type'], 'photo' => $product->photo, 'stock' => $product->stock]);
+        Cart::add($product->id, $product->name, $request['pieces'], $price, 0, ['type' => $type->name, 'photo' => $product->photo, 'stock' => $product->stock]);
 //        dd(Cart::content());
         $myCountry = Country::where('id', 1)->first();
         $ship_cost = '2.00';

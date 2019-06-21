@@ -77,6 +77,11 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
+                    <a class="nav-link" href="{{route('types.index')}}" id="" role="button">
+                        <i class="fas fa-keyboard"></i>  Types
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" id="products" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-folder-open"></i> Orders
                     </a>

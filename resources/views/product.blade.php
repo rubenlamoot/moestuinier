@@ -33,11 +33,11 @@
                             @foreach ($product->types as $type)
                                 <div class="input-group-prepend d-flex flex-column">
                                     <div class="input-group-text d-flex inputZakje">
-                                        <input type="checkbox" aria-label="checkbox" name="type" value="{{$type->name}}">
+                                        <input type="checkbox" aria-label="checkbox" name="type" value="{{$type->id}}">
                                         <p class="mb-0 w-100 text-left pl-2">{{$type->name}}</p>
-                                        <p class="prijs mb-0 flex-shrink-1">@if ($type->id == 2 || $type->id == 4) € {{number_format(($product->price * 2) - (($product->price * 2) *25 / 100), 2)}} @else  € {{$product->price}} @endif</p>
+                                        <p class="prijs mb-0 flex-shrink-1">@if ($type->discount == 1) € {{number_format(($product->price * 2) - (($product->price * 2) * $type->percentage / 100), 2)}} @else  € {{$product->price}} @endif</p>
                                     </div>
-                                    @if ($type->id == 2 || $type->id == 4)<p class="mb-0 text-right text-warning pKorting">25% korting op {{$type->name}}</p>@endif
+                                    @if ($type->discount == 1)<p class="mb-0 text-right text-warning pKorting">{{$type->percentage}}% korting op {{$type->name}}</p>@endif
                                 </div>
                             @endforeach
                                 @if ($product->stock == 0)

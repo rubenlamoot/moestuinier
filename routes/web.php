@@ -57,6 +57,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('/admin/products', 'AdminProductsController');
     Route::resource('/admin/countries', 'AdminCountriesController');
     Route::resource('/admin/orders', 'AdminOrdersController');
+    Route::resource('/admin/types', 'AdminTypesController');
 
 
 });
