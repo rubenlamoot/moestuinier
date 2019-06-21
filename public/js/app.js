@@ -1898,7 +1898,7 @@ Vue.use(vue_stripe_checkout__WEBPACK_IMPORTED_MODULE_1__["default"], 'pk_test_V1
       }).then(function (response) {
         document.location.href = 'thanks';
       })["catch"](function (error) {
-        console.log(error);
+        document.location.href = 'oeps';
       });
     },
     opened: function opened() {// do stuff

@@ -22,93 +22,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="accordion" id="accordion_Checkout">
-                            {{--<div class="card">--}}
-                                {{--<div class="card-header" id="headingOne">--}}
-                                    {{--<h2 class="mb-0">--}}
-                                        {{--<button class="btn btn-link w-100 d-flex" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="@auth false @else true @endauth" aria-controls="collapseOne">--}}
-                                            {{--<span class="text-secondary">Stap 1</span>--}}
-                                            {{--<span class="text-dark flex-grow-1 text-right">Checkout opties</span>--}}
-                                        {{--</button>--}}
-                                    {{--</h2>--}}
-                                {{--</div>--}}
-                                {{--<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion_Checkout">--}}
-                                    {{--<div class="card-body">--}}
-                                        {{--<div class="row">--}}
-                                            {{--<div class="col-12 col-md-6 d-flex flex-column mb-5 mb-md-0">--}}
-                                                {{--<h3 class="text-uppercase text-secondary border-bottom border-secondary text-right pb-3">nieuwe klant</h3>--}}
-                                                {{--<p>Meld je bij ons aan voor toekomstig gemak:</p>--}}
-                                                {{--<form>--}}
-                                                    {{--<div class="form-check">--}}
-                                                        {{--<input class="form-check-input" type="radio" id="gastRadios" value="option1" checked>--}}
-                                                        {{--<label class="form-check-label" for="gastRadios">--}}
-                                                            {{--Checkout als Bezoeker--}}
-                                                        {{--</label>--}}
-                                                    {{--</div>--}}
-                                                    {{--<div class="form-check">--}}
-                                                        {{--<input class="form-check-input" type="radio" id="registreerRadios" value="option2">--}}
-                                                        {{--<label class="form-check-label" for="registreerRadios">--}}
-                                                            {{--Registreer--}}
-                                                        {{--</label>--}}
-                                                    {{--</div>--}}
-                                                    {{--<p class="mt-3 border-bottom border-secondary pb-3">Maak een account aan bij onze winkel en ga vlugger door het checkout proces. Bovendien kan je meerdere leveringsadressen opslaan en je orders bekijken en volgen via je account. </p>--}}
-                                                    {{--<div>--}}
-                                                        {{--<button class="btn btn-dark text-uppercase" type="submit">ga verder</button>--}}
-                                                    {{--</div>--}}
-                                                {{--</form>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="col-12 col-md-6 d-flex flex-column">--}}
-                                                {{--<h3 class="text-uppercase text-secondary border-bottom border-secondary text-right pb-3">bestaande klant</h3>--}}
-                                                {{--<p>Als je reeds een account hebt bij ons, gelieve dan in te loggen.</p>--}}
-                                                {{--<form class="mb-auto" method="POST" action="{{ route('login') }}">--}}
-                                                    {{--@csrf--}}
-                                                    {{--<div class="form-group">--}}
-                                                        {{--<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Vul uw email in">--}}
-                                                        {{--@error('email')--}}
-                                                        {{--<span class="invalid-feedback" role="alert">--}}
-                                                            {{--<strong>{{ $message }}</strong>--}}
-                                                        {{--</span>--}}
-                                                        {{--@enderror--}}
-                                                    {{--</div>--}}
-                                                    {{--<div class="form-group">--}}
-                                                        {{--<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Wachtwoord">--}}
-                                                        {{--@error('password')--}}
-                                                        {{--<span class="invalid-feedback" role="alert">--}}
-                                                            {{--<strong>{{ $message }}</strong>--}}
-                                                        {{--</span>--}}
-                                                        {{--@enderror--}}
-                                                    {{--</div>--}}
-                                                    {{--<div class="form-group form-check">--}}
-                                                        {{--<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>--}}
-                                                        {{--<label class="form-check-label pb-1" for="remember">Paswoord onthouden</label>--}}
-                                                    {{--</div>--}}
-                                                    {{--<div class="d-flex border-top border-secondary pt-3">--}}
-                                                        {{--<button class="btn btn-dark text-uppercase" type="submit">inloggen</button>--}}
-                                                        {{--@if (Route::has('password.request'))--}}
-                                                            {{--<a class="btn btn-link text-danger flex-fill text-right pr-3" href="{{ route('password.request') }}">--}}
-                                                                {{--{{ __('Wachtwoord vergeten?') }}--}}
-                                                            {{--</a>--}}
-                                                        {{--@endif--}}
 
-                                                    {{--</div>--}}
-                                                {{--</form>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="row justify-content-center mt-3">--}}
-                                                {{--<div class="col-md-8">--}}
-                                                    {{--@if (session('alert'))--}}
-                                                        {{--<div class="alert alert-danger">--}}
-                                                            {{--{{ session('alert') }}--}}
-                                                        {{--</div>--}}
-                                                    {{--@endif--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
                             <div class="card">
                                 <div class="card-header" id="headingOne">
                                     <h2 class="mb-0">
-                                        <button class="btn btn-link collapsed w-100 d-flex" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <button class="btn btn-link collapsed w-100 d-flex" type="button" data-toggle="collapse" data-target="@if ($current == 1) #collapseOne @endif" aria-expanded="true" aria-controls="collapseOne">
                                             <span class="text-secondary">Stap 1</span>
                                             <span class="text-dark flex-grow-1 text-right">Facturatiegegevens</span>
                                         </button>
@@ -183,7 +101,7 @@
                             <div class="card">
                                 <div class="card-header" id="headingTwo">
                                     <h2 class="mb-0">
-                                        <button class="btn btn-link collapsed w-100 d-flex" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <button class="btn btn-link collapsed w-100 d-flex" type="button" data-toggle="collapse" data-target="@if ($current == 2) #collapseTwo @endif" aria-expanded="false" aria-controls="collapseTwo">
                                             <span class="text-secondary">Stap 2</span>
                                             <span class="text-dark flex-grow-1 text-right">Leveringsgegevens</span>
                                         </button>
@@ -218,64 +136,16 @@
                                 </div>
                             </div>
 
-                            {{--<div class="card">--}}
-                                {{--<div class="card-header" id="headingThree">--}}
-                                    {{--<h2 class="mb-0">--}}
-                                        {{--<button class="btn btn-link collapsed w-100 d-flex" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">--}}
-                                            {{--<span class="text-secondary">Stap 3 </span>--}}
-                                            {{--<span class="text-dark flex-grow-1 text-right">Betalingsmethode</span>--}}
-                                        {{--</button>--}}
-                                    {{--</h2>--}}
-                                {{--</div>--}}
-                                {{--<div id="collapseThree" class="collapse @if ($current == 3) show @endif " aria-labelledby="headingThree" data-parent="#accordion_Checkout">--}}
-                                    {{--<div class="card-body">--}}
-                                        {{--<h3 class="text-uppercase text-secondary border-bottom border-secondary text-right mt-3 mt-md-0 pb-3">Geef een keuze aan</h3>--}}
-                                        {{--<form class="mt-3">--}}
-                                            {{--<div class="form-check">--}}
-                                                {{--<input class="form-check-input" type="radio" name="payRadios" id="creditCard" value="option1" checked>--}}
-                                                {{--<label class="form-check-label" for="creditCard">--}}
-                                                    {{--Visa/Mastercard--}}
-                                                {{--</label>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="form-check">--}}
-                                                {{--<input class="form-check-input" type="radio" name="payRadios" id="debitCard" value="option2">--}}
-                                                {{--<label class="form-check-label" for="debitCard">--}}
-                                                    {{--Bancontact/Mistercash--}}
-                                                {{--</label>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="form-check">--}}
-                                                {{--<input class="form-check-input" type="radio" name="payRadios" id="directPay" value="option3">--}}
-                                                {{--<label class="form-check-label" for="directPay">--}}
-                                                    {{--Direct Banking--}}
-                                                {{--</label>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="form-check">--}}
-                                                {{--<input class="form-check-input" type="radio" name="payRadios" id="payPal" value="option4">--}}
-                                                {{--<label class="form-check-label" for="payPal">--}}
-                                                    {{--Paypal--}}
-                                                {{--</label>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="form-check">--}}
-                                                {{--<input class="form-check-input" type="radio" name="payRadios" id="transfer" value="option5">--}}
-                                                {{--<label class="form-check-label" for="transfer">--}}
-                                                    {{--Overschrijving--}}
-                                                {{--</label>--}}
-                                            {{--</div>--}}
-                                            {{--<button class="btn btn-dark text-uppercase mt-3" type="submit">ga verder</button>--}}
-                                        {{--</form>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
                             <div class="card">
                                 <div class="card-header" id="headingThree">
                                     <h2 class="mb-0">
-                                        <button class="btn btn-link collapsed w-100 d-flex" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        <button class="btn btn-link collapsed w-100 d-flex" type="button" data-toggle="collapse" data-target="@if ($current == 3) #collapseThree @endif" aria-expanded="false" aria-controls="collapseThree">
                                             <span class="text-secondary">Stap 3 </span>
                                             <span class="text-dark flex-grow-1 text-right">Bevestig order</span>
                                         </button>
                                     </h2>
                                 </div>
-                                <div id="collapseThree" class="collapse @if ($current == 3) show @endif " aria-labelledby="headingThree" data-parent="#accordion_Checkout">
+                                <div id="collapseThree" class="collapse @if ($current == 3) show @endif" aria-labelledby="headingThree" data-parent="#accordion_Checkout">
                                     <div class="card-body">
                                         <div class="row border border-secondary">
                                             <div class="col-12 d-md-none">
@@ -347,7 +217,7 @@
                             <div class="card">
                                 <div class="card-header" id="headingFour">
                                     <h2 class="mb-0">
-                                        <button class="btn btn-link collapsed w-100 d-flex" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        <button class="btn btn-link collapsed w-100 d-flex" type="button" data-toggle="collapse" data-target="@if ($current == 4) #collapseFour @endif" aria-expanded="false" aria-controls="collapseFour">
                                             <span class="text-secondary">Stap 4</span>
                                             <span class="text-dark flex-grow-1 text-right">Betalen</span>
                                         </button>

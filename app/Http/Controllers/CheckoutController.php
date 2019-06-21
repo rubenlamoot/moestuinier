@@ -62,6 +62,7 @@ class CheckoutController extends Controller
                 'address_id' => $address->id,
             ]);
             $user->roles()->attach(3);
+            Auth::loginUsingId($user->id);
         }
 
         $myCountry = Country::findOrFail($request['country']);

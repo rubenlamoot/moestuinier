@@ -19,6 +19,10 @@ Route::get('/thanks', function () {
     return view('thanks');
 })->name('thanks');
 
+Route::get('/oeps', function () {
+    return view('oeps');
+})->name('oeps');
+
 
 Route::post('newsletter', 'AdminUsersController@newsletter')->name('newsletter');
 //Route::get('level1', 'MenuController@menu_level1')->name('level1');

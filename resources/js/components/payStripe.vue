@@ -54,7 +54,7 @@
 
                     })
                     .catch(error => {
-                        console.log(error);
+                        document.location.href = 'oeps';
                     })
             },
             opened () {

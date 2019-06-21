@@ -9,6 +9,7 @@ use App\Product;
 use App\Type;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MenuController extends Controller
 {
@@ -59,6 +60,15 @@ class MenuController extends Controller
     }
 
     public function cart_add(Request $request, $id){
+
+        $validator = Validator::make($request->all(), [
+            'type' => 'required',
+
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('alert', 'Je moet een vakje aanklikken.');
+        }
 
         $product = Product::findOrFail($id);
         $type = Type::findOrFail($request['type']);

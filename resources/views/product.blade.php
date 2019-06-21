@@ -28,7 +28,7 @@
 
                     <form class="mb-3" action="{{route('cart_add', $product->id)}}" method="POST">
                         @csrf
-                        {{--<input type="hidden" name="product" value="{{$product->id}}">--}}
+
                         <div class="input-group d-flex flex-column">
                             @foreach ($product->types as $type)
                                 <div class="input-group-prepend d-flex flex-column">
@@ -40,6 +40,11 @@
                                     @if ($type->discount == 1)<p class="mb-0 text-right text-warning pKorting">{{$type->percentage}}% korting op {{$type->name}}</p>@endif
                                 </div>
                             @endforeach
+                                @if (session('alert'))
+                                    <div class="alert alert-danger w-50">
+                                        {{ session('alert') }}
+                                    </div>
+                                @endif
                                 @if ($product->stock == 0)
                                     <p><br>Product tijdelijk uitverkocht</p>
                                 @else
