@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\OrderItem;
 use Illuminate\Http\Request;
 
 class AdminOrdersController extends Controller
@@ -60,6 +61,10 @@ class AdminOrdersController extends Controller
     public function edit($id)
     {
         //
+        $order = Order::findOrFail($id);
+        $orderItems = OrderItem::where('order_id', $id)->get();
+
+        return view('admin.orders.edit', compact('order', 'orderItems'));
     }
 
     /**
@@ -72,6 +77,10 @@ class AdminOrdersController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $input = $request->all();
+        $order = Order::findOrFail($id);
+        $order->update($input);
+        return redirect('admin/orders');
     }
 
     /**
@@ -83,5 +92,11 @@ class AdminOrdersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function notHandled(){
+        $orders = Order::where('handled', 0)->get();
+
+        return view('admin.orders.index', compact('orders'));
     }
 }

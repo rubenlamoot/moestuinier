@@ -82,8 +82,13 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="products">
                         <a class="dropdown-item" href="{{route('orders.index')}}">Alle orders</a>
-                        <a class="dropdown-item" href="">Onafgewerkte orders</a>
+                        <a class="dropdown-item" href="{{route('notHandled')}}">Onafgewerkte orders</a>
                     </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="{{route('lowStock')}}" id="" role="button">
+                        <i class="fas fa-cubes"></i>  Lage Stock
+                    </a>
                 </li>
             </ul>
         </div>

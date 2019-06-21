@@ -46,6 +46,8 @@ Route::group(['middleware' => 'active'], function () {
 
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin','HomeController@index')->name('admin');
+    Route::get('notHandled', 'AdminOrdersController@notHandled')->name('notHandled');
+    Route::get('lowStock', 'AdminProductsController@lowStock')->name('lowStock');
 
     Route::resource('/admin/months', 'AdminMonthsController');
     Route::resource('/admin/users', 'AdminUsersController');
@@ -55,5 +57,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('/admin/products', 'AdminProductsController');
     Route::resource('/admin/countries', 'AdminCountriesController');
     Route::resource('/admin/orders', 'AdminOrdersController');
+
 
 });

@@ -95,7 +95,7 @@ class AdminProductsController extends Controller
         $product = Product::create($input);
         $product->types()->sync($types);
 
-        return redirect('admin\products');
+        return redirect('admin/products');
     }
 
     /**
@@ -216,5 +216,10 @@ class AdminProductsController extends Controller
         $product->delete();
 
         return redirect('admin/products');
+    }
+
+    public function lowStock(){
+        $products = Product::where('stock', '<', 10)->get();
+        return view('admin.products.stock', compact('products'));
     }
 }

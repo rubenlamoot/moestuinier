@@ -152,7 +152,7 @@
                             </div>
                         </div>
                         <div class="d-flex">
-                            <a href="{{route('index')}}" class="btn btn-secondary">Verder winkelen</a>
+                            <a href="{{ url()->previous() }}" class="btn btn-secondary">Verder winkelen</a>
                             <a href="{{route('step0')}}" class="btn btn-secondary ml-auto">Checkout</a>
                         </div>
                     </div>

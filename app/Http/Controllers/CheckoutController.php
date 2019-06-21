@@ -8,6 +8,7 @@ use App\Country;
 use App\Http\Requests\Step1Request;
 use App\Order;
 use App\OrderItem;
+use App\Product;
 use App\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
@@ -112,6 +113,9 @@ class CheckoutController extends Controller
                     'price' => $cart->price,
                     'type' => $cart->options->type
                 ]);
+                $product = Product::findOrFail($cart->id);
+                $product->stock -= $cart->qty;
+                $product->save();
             }
             Cart::destroy();
 

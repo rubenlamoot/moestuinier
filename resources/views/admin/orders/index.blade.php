@@ -36,10 +36,10 @@
             @endif
             </tbody>
         </table>
-        <div class="row">
-            <div class="col-12">
-                {{$orders->links()}}
-            </div>
-        </div>
+        {{--<div class="row">--}}
+            {{--<div class="col-12">--}}
+                {{--{{$orders->links()}}--}}
+            {{--</div>--}}
+        {{--</div>--}}
     </main>
 @stop
