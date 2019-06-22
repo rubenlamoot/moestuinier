@@ -46,7 +46,7 @@
                 <li><a href="{{route('login')}}" class="text-secondary streepje">Inloggen</a></li>
                 <li><a href="{{route('register')}}" class="text-secondary streepje pl-sm-3">Registreren</a></li>
                 <li><a href="404page.html#myBreadcrumb" class="text-secondary streepje pl-sm-3">Mijn Account</a></li>
-                <li><a href="checkout.html#myBreadcrumb" class="text-secondary pl-sm-3">Checkout</a></li>
+                <li><a href="{{route('step0')}}" class="text-secondary pl-sm-3">Checkout</a></li>
             </ul>
         </div>
     </div>

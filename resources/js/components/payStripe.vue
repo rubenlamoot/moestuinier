@@ -28,7 +28,7 @@
         props: ['cartTotal', 'route'],
         data() {
             return {
-                image: 'images/home/logo_small.png',
+                image: '../images/home/logo_small.png',
                 name: 'De Moestuinier',
                 description: 'Betaling van de bestelde producten',
                 currency: 'EUR',
@@ -50,11 +50,11 @@
                     stripeItems: token,
                 })
                     .then(response => {
-                        document.location.href = 'thanks';
+                        document.location.href = '../thanks';
 
                     })
                     .catch(error => {
-                        document.location.href = 'oeps';
+                        document.location.href = '../oeps';
                     })
             },
             opened () {

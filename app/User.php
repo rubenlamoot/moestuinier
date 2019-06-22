@@ -50,6 +50,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Order');
     }
 
+    public function deliveries(){
+        return $this->belongsToMany('App\Delivery');
+    }
+
     public function isAdmin()
     {
         if($this->isActive()){

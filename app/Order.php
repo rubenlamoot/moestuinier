@@ -19,7 +19,7 @@ class Order extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function address(){
-        return $this->belongsTo('App\Address');
+    public function delivery(){
+        return $this->belongsTo('App\Delivery');
     }
 }

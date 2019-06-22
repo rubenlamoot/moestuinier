@@ -23,9 +23,9 @@
                     <tr>
                         <td><a href="{{route('orders.edit', $order->id)}}">{{$order->id}}</a></td>
                         <td>{{$order->user->first_name}} {{$order->user->last_name}}</td>
-                        <td>{{$order->user->address->street}} {{$order->user->address->house_nr}} {{$order->user->address->bus_nr}}<br>
-                            {{$order->user->address->city->zip_code}} {{$order->user->address->city->city}} <br>
-                            {{$order->user->address->country->country}}</td>
+                        <td>{{$order->delivery->street}} {{$order->delivery->house_nr}} {{$order->delivery->bus_nr}}<br>
+                            {{$order->delivery->city->zip_code}} {{$order->delivery->city->city}} <br>
+                            {{$order->delivery->city->country->country}}</td>
                         <td>{{$order->items}}</td>
                         <td>{{$order->totalprice}}</td>
                         <td>{{$order->handled == 1 ? 'Ja' : 'Nee'}}</td>

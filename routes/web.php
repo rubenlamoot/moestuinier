@@ -24,6 +24,7 @@ Route::get('/oeps', function () {
 })->name('oeps');
 
 
+
 Route::post('newsletter', 'AdminUsersController@newsletter')->name('newsletter');
 //Route::get('level1', 'MenuController@menu_level1')->name('level1');
 Route::get('showProducts/{id}', 'MenuController@showProducts')->name('showProducts');
@@ -36,8 +37,10 @@ Route::post('shipmentCost', 'MenuController@shipmentCost')->name('shipmentCost')
 
 Route::get('step0', 'CheckoutController@step0')->name('step0');
 Route::post('step1', 'CheckoutController@step1')->name('step1');
-Route::get('step3', 'CheckoutController@step3')->name('step3');
-Route::post('toPay', 'CheckoutController@store')->name('toPay');
+Route::post('step2', 'CheckoutController@step2')->name('step2');
+Route::get('/step3/{id}', 'CheckoutController@step3')->name('step3');
+Route::post('toPay/{id}', 'CheckoutController@store')->name('toPay');
+
 
 Auth::routes();
 

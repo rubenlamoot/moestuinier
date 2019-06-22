@@ -16,7 +16,7 @@ class AdminOrdersController extends Controller
     public function index()
     {
         //
-        $orders = Order::all();
+        $orders = Order::with('user', 'delivery.city.country')->get();
         return view('admin.orders.index', compact('orders'));
     }
 
@@ -95,7 +95,7 @@ class AdminOrdersController extends Controller
     }
 
     public function notHandled(){
-        $orders = Order::where('handled', 0)->get();
+        $orders = Order::with('user', 'delivery.city.country')->where('handled','=' ,0)->get();
 
         return view('admin.orders.index', compact('orders'));
     }

@@ -6,9 +6,9 @@
 
         <div class="d-flex flex-row">
             <p>Leveringsadres: <p>
-            <p>{{$order->user->address->street}} {{$order->user->address->house_nr}} {{$order->user->address->bus_nr}}<br>
-                {{$order->user->address->city->zip_code}} {{$order->user->address->city->city}} <br>
-                {{$order->user->address->country->country}}</p>
+            <p>{{$order->delivery->street}} {{$order->delivery->house_nr}} {{$order->delivery->bus_nr}}<br>
+                {{$order->delivery->city->zip_code}} {{$order->delivery->city->city}} <br>
+                {{$order->delivery->city->country->country}}</p>
         </div>
 
         <div class="row">

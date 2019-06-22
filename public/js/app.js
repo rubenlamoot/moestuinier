@@ -1846,7 +1846,7 @@ Vue.use(vue_stripe_checkout__WEBPACK_IMPORTED_MODULE_1__["default"], 'pk_test_V1
   props: ['cartTotal', 'route'],
   data: function data() {
     return {
-      image: 'images/home/logo_small.png',
+      image: '../images/home/logo_small.png',
       name: 'De Moestuinier',
       description: 'Betaling van de bestelde producten',
       currency: 'EUR',
@@ -1896,9 +1896,9 @@ Vue.use(vue_stripe_checkout__WEBPACK_IMPORTED_MODULE_1__["default"], 'pk_test_V1
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(this.route, {
         stripeItems: token
       }).then(function (response) {
-        document.location.href = 'thanks';
+        document.location.href = '../thanks';
       })["catch"](function (error) {
-        document.location.href = 'oeps';
+        document.location.href = '../oeps';
       });
     },
     opened: function opened() {// do stuff

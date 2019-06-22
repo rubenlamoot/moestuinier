@@ -110,27 +110,28 @@
                                 <div id="collapseTwo" class="collapse @if($current == 2) show @endif" aria-labelledby="headingTwo" data-parent="#accordion_Checkout">
                                     <div class="card-body">
                                         <h3 class="text-uppercase text-secondary border-bottom border-secondary text-right mt-3 mt-md-0 pb-3">Leveringsadres</h3>
-                                        <form class="">
-                                            <input type="text" class="form-control mb-2 mt-3" id="delFirstName" placeholder="Voornaam">
-                                            <input type="text" class="form-control mb-2" id="delLastName" placeholder="Familienaam">
-                                            <input type="text" class="form-control mb-2" id="delAddress" placeholder="Adres">
+                                        <form action="{{route('step2')}}" method="POST">
+                                            @csrf
+                                            @method('POST')
+                                            {{--<input type="text" class="form-control mb-2 mt-3" id="delFirstName" placeholder="Voornaam">--}}
+                                            {{--<input type="text" class="form-control mb-2" id="delLastName" placeholder="Familienaam">--}}
+                                            <input type="text" class="form-control mb-2" name="street" placeholder="Adres" required>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control mb-2 mr-3" id="delHouseNumber" placeholder="Nummer">
-                                                <input type="text" class="form-control mb-2 ml-3" id="delBoxNumber" placeholder="Bus">
+                                                <input type="text" class="form-control mb-2 mr-3" name="house_nr" placeholder="Nummer" required>
+                                                <input type="text" class="form-control mb-2 ml-3" name="bus_nr" placeholder="Bus">
                                             </div>
-                                            <input type="text" class="form-control mb-2" id="delPostalCode" placeholder="Postcode">
-                                            <input type="text" class="form-control mb-2" id="delCity" placeholder="Stad">
+                                            <input type="text" class="form-control mb-2" name="zip_code" placeholder="Postcode" required>
+                                            <input type="text" class="form-control mb-2" name="city" placeholder="Stad" required>
                                             <div class="form-group d-flex">
-                                                <label for="delCountrySelect" class="pr-3 pt-1">Land:</label>
-                                                <select class="form-control" id="delCountrySelect">
-                                                    <option selected value="1">België</option>
-                                                    <option value="2">Duitsland</option>
-                                                    <option value="3">Frankrijk</option>
-                                                    <option value="4">Luxemburg</option>
-                                                    <option value="5">Nederland</option>
+                                                <label for="country2" class="pr-3 pt-1">Land:</label>
+                                                <select class="form-control" id="country2" name="country">
+                                                    @foreach($countries as $country)
+                                                        <option value="{{$country->id}}" @auth @if(Auth::user()->address->country->id == $country->id) selected @endif @endauth>{{$country->country}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <button class="btn btn-dark text-uppercase" type="submit">ga verder</button>
+                                            @include('errors.form-error')
                                         </form>
                                     </div>
                                 </div>
@@ -157,16 +158,16 @@
                                                         <p class="my-auto">Beschrijving</p>
                                                     </div>
                                                     <div class="col-md-2 pl-3 my-auto">
-                                                        <p class="my-auto">Zaadjes</p>
+                                                        <p class="my-auto">type</p>
                                                     </div>
                                                     <div class="col-md-2 pl-0 my-auto">
-                                                        <p class="my-auto">Prijs/Stuk</p>
+                                                        <p class="my-auto">Prijs/Stuk (excl Btw)</p>
                                                     </div>
                                                     <div class="col-md-2 pl-0 my-auto">
                                                         <p class="my-auto">Aantal</p>
                                                     </div>
                                                     <div class="col-md-2 pl-3 my-auto">
-                                                        <p class="my-auto">Subtotaal</p>
+                                                        <p class="my-auto">Subtotaal (incl Btw)</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,7 +181,7 @@
                                                     <p class="seeds mb-1">{{$cart->options->type}}</p>
                                                 </div>
                                                 <div class="col-md-2 d-flex flex-md-column my-auto">
-                                                    <p class="mb-1 d-md-none">Prijs : &nbsp;</p>
+                                                    <p class="mb-1 d-md-none">Prijs (excl Btw): &nbsp;</p>
                                                     <p class="unitPrice mb-1">€ {{$cart->price}}</p>
 
                                                 </div>
@@ -189,8 +190,8 @@
                                                     <p class="mb-1">{{$cart->qty}}</p>
                                                 </div>
                                                 <div class="col-md-2 d-flex flex-md-column my-auto">
-                                                    <p class="mb-0 d-md-none">Subtotaal : &nbsp;</p>
-                                                    <p class="prijs">€ {{$cart->price * $cart->qty}}</p>
+                                                    <p class="mb-0 d-md-none">Subtotaal (incl Btw) : &nbsp;</p>
+                                                    <p class="prijs">€ {{number_format($cart->total * $cart->qty, 2)}}</p>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -204,12 +205,13 @@
                                             </div>
                                             <div class="col-4 px-0 border-left border-secondary text-center">
                                                 <p class="subTotal border-bottom border-secondary mb-0 py-2">€ {{Cart::total()}}</p>
-                                                <p class="shipCost border-bottom border-secondary mb-0 py-2">€ {{$ship_cost}}</p>
+                                                <p class="shipCost border-bottom border-secondary mb-0 py-2">€ {{$delivery->city->country->shipment}}</p>
                                                 <p class="discountVoucher border-bottom border-secondary mb-0 py-2">€ 0.00</p>
-                                                <p class="Total prijs mb-0 py-2">€ {{Cart::total() + $ship_cost}}</p>
+                                                <p class="Total prijs mb-0 py-2">€ {{Cart::total() + $delivery->city->country->shipment}}</p>
                                             </div>
                                         </div>
-                                        <a href="{{route('step3')}}" class="btn btn-dark text-uppercase float-right mb-3">naar betalen</a>
+
+                                        <a href="{{route('step3', $delivery->id)}}" class="btn btn-dark text-uppercase float-right mb-3">naar betalen</a>
                                     </div>
                                 </div>
                             </div>
@@ -227,7 +229,7 @@
                                     <div class="card-body">
                                         <h3 class="text-uppercase text-secondary border-bottom border-secondary text-right mt-3 mt-md-0 pb-3">Klik op de betaal knop</h3>
 
-                                    <pay-stripe route={{route('toPay')}} :cart-total={{Cart::total() * 100}}></pay-stripe>
+                                    <pay-stripe route={{route('toPay', $delivery->id)}} :cart-total={{(Cart::total() + $delivery->city->country->shipment) * 100}}></pay-stripe>
                                     </div>
                                 </div>
                             </div>

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Address;
 use App\City;
 use App\Country;
+use App\Delivery;
 use App\Http\Requests\Step1Request;
+use App\Http\Requests\Step2Request;
 use App\Order;
 use App\OrderItem;
 use App\Product;
@@ -21,10 +23,11 @@ use Stripe\Stripe;
 class CheckoutController extends Controller
 {
     //
+
     public function step0(){
         $current = 1;
-        $ship_cost = "0.00";
-        return view('checkout', compact('current', 'ship_cost'));
+        $delivery = Delivery::first();
+        return view('checkout', compact('current', 'delivery'));
     }
 
     public function step1(Step1Request $request){
@@ -65,26 +68,64 @@ class CheckoutController extends Controller
             Auth::loginUsingId($user->id);
         }
 
-        $myCountry = Country::findOrFail($request['country']);
-        $ship_cost = $myCountry->shipment;
+//        $myCountry = Country::findOrFail($request['country']);
+//        $ship_cost = $myCountry->shipment;
 
-        $delivery = $request['delivery_billingCheck'];
-        if($delivery == true){
+        $delivery_equals_address = $request['delivery_billingCheck'];
+        if($delivery_equals_address == true){
             $current = 3;
+            $delivery = Delivery::firstOrCreate([
+                'street' => $request['street'],
+                'house_nr' => $request['house_nr'],
+                'bus_nr' => $request['bus_nr'],
+                'city_id' => $city->id,
+            ]);
+
+            $user->deliveries()->syncWithoutDetaching($delivery->id);
         }else{
             $current = 2;
         }
 
-        return view('checkout', compact('current', 'ship_cost'));
+        return view('checkout', compact('current', 'delivery'));
     }
 
-    public function step3(){
+    public function step2(Step2Request $request){
+
+        $city = City::firstOrCreate([
+            'zip_code' => $request['zip_code'],
+            'city' => $request['city'],
+            'country_id' => $request['country'],
+        ]);
+
+        $delivery = Delivery::firstOrCreate([
+            'street' => $request['street'],
+            'house_nr' => $request['house_nr'],
+            'bus_nr' => $request['bus_nr'],
+            'city_id' => $city->id,
+        ]);
+        $user = Auth::user();
+        $user->deliveries()->syncWithoutDetaching($delivery->id);
+
+        $current = 3;
+//        $myCountry = Country::findOrFail($request['country']);
+//        $ship_cost = $myCountry->shipment;
+
+        return view('checkout', compact('current', 'delivery'));
+    }
+
+    public function step3($id){
         $current = 4;
-        $ship_cost = "0.00";
-        return view('checkout', compact('current', 'ship_cost'));
+//        $user = Auth::user();
+//        $ship_cost = $user->address->city->country->shipment;
+        $delivery = Delivery::findOrFail($id);
+        return view('checkout', compact('current', 'delivery'));
     }
 
-    public function store(){
+    public function store($id){
+
+//        $user = Auth::user();
+//        $ship_cost = $user->address->city->country->shipment;
+        $delivery = Delivery::findOrFail($id);
 
         Stripe::setApiKey(config('services.stripe.secret'));
 
@@ -95,14 +136,14 @@ class CheckoutController extends Controller
 
         $pay = Charge::create([
             'customer' => $customer->id,
-            'amount' => Cart::total() * 100,
+            'amount' => (Cart::total() + $delivery->city->country->shipment) * 100,
             'currency' => 'eur',
         ]);
 
         if($pay->paid == true){
             $order = Order::create([
                 'user_id' => Auth::user()->id,
-                'delivery_id' => Auth::user()->address->id,
+                'delivery_id' => $delivery->id,
                 'items' => Cart::count(),
                 'totalprice' => Cart::total(),
             ]);
