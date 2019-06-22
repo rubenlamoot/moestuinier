@@ -24,17 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        if(Auth::check()){
-//            if(Auth::user()->isAdmin()){
-//                return view('admin.index');
-//            }else{
-//                if(Auth::user()->isActive()){
-//                    return view('/index');
-//                }
-//            }
-//        }
-//        return view('/index');
-
         if(Auth::check()){
             if(Auth::user()->isAdmin()){
                 return view('admin.index');

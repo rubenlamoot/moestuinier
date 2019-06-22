@@ -35,7 +35,7 @@
                                     <div class="input-group-text d-flex inputZakje">
                                         <input type="checkbox" aria-label="checkbox" name="type" value="{{$type->id}}">
                                         <p class="mb-0 w-100 text-left pl-2">{{$type->name}}</p>
-                                        <p class="prijs mb-0 flex-shrink-1">@if ($type->discount == 1) € {{number_format(($product->price * 2) - (($product->price * 2) * $type->percentage / 100), 2)}} @else  € {{$product->price}} @endif</p>
+                                        <p class="prijs mb-0 flex-shrink-1">@if ($type->discount == 1) € {{number_format(($product->price * $type->times_price) - (($product->price * $type->times_price) * $type->percentage / 100), 2)}} @else  € {{$product->price * $type->times_price}} @endif</p>
                                     </div>
                                     @if ($type->discount == 1)<p class="mb-0 text-right text-warning pKorting">{{$type->percentage}}% korting op {{$type->name}}</p>@endif
                                 </div>

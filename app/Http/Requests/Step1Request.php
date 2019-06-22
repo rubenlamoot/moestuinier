@@ -58,6 +58,7 @@ class Step1Request extends FormRequest
         return [
             'email.unique' => 'Email bestaat reeds',
             'email.required' => 'Email is verplicht',
+            'password.required' => 'Wachtwoord is verplicht',
             'first_name.required' => 'Voornaam is verplicht',
             'last_name.required' => 'Familienaam is verplicht',
             'street.required' => 'Straat is verplicht',

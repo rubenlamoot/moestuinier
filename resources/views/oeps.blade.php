@@ -17,7 +17,7 @@
                 </ol>
             </nav>
 
-            <h2 class="text-secondary mb-5">Er is iets fout gelopen met de betaling, gelieve opnieuw te proberen.</h2>
+            <h2 class="text-secondary mb-5">Er is iets fout gelopen met de betaling, gelieve <a href="{{route('step3')}}">opnieuw</a> te proberen.</h2>
 
 
 

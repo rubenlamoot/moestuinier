@@ -12,7 +12,8 @@
                         <th scope="col">ID</th>
                         <th scope="col">Naam</th>
                         <th scope="col">Korting</th>
-                        <th scope="col">Kortingspercentage</th>
+                        <th scope="col">Kortings-<br>percentage</th>
+                        <th scope="col">Prijs-<br>verhouding</th>
                         <th scope="col">Created</th>
                         <th scope="col">Updated</th>
                     </tr>
@@ -25,6 +26,7 @@
                                 <td><a href="{{route('types.edit', $type->id)}}">{{$type->name}}</a></td>
                                 <td>{{$type->discount == 1 ? 'Ja' : 'Nee'}}</td>
                                 <td>{{$type->percentage}}</td>
+                                <td>{{$type->times_price}}</td>
                                 <td>{{$type->created_at}}</td>
                                 <td>{{$type->updated_at}}</td>
                             </tr>
@@ -50,8 +52,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="name">Kortingspercentage:</label>
+                        <label for="percentage">Kortingspercentage:</label>
                         <input type="text" class="form-control" id="percentage" name="percentage" value="{{$editType->percentage}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="times_price">Prijsverhouding:</label>
+                        <input type="text" class="form-control" id="times_price" name="times_price" value="{{$editType->times_price}}">
                     </div>
                     <button class="btn btn-success" type="submit">Wijzigen</button>
                 </form>
@@ -77,6 +83,10 @@
                     <div class="form-group">
                         <label for="name">Kortingspercentage:</label>
                         <input type="text" class="form-control" id="percentage" name="percentage">
+                    </div>
+                    <div class="form-group">
+                        <label for="times_price">Prijsverhouding:</label>
+                        <input type="text" class="form-control" id="times_price" name="times_price">
                     </div>
                     <button class="btn btn-primary" type="submit">Type toevoegen</button>
                 </form>

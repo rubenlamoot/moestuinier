@@ -18,6 +18,7 @@ class CreateTypesTable extends Migration
             $table->string('name');
             $table->boolean('discount')->default(0);
             $table->integer('percentage')->default(0);
+            $table->decimal('times_price', 4,2)->default(1);
             $table->softDeletes();
             $table->timestamps();
         });

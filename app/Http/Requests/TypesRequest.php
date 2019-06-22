@@ -26,7 +26,8 @@ class TypesRequest extends FormRequest
         return [
             //
             'name' => 'required',
-            'percentage' => 'numeric|min:0|max:99'
+            'percentage' => 'integer|min:0|max:99',
+            'times_price' => 'numeric'
         ];
     }
 
@@ -34,7 +35,8 @@ class TypesRequest extends FormRequest
     {
         return [
             'name.required' => 'Naam is verplicht',
-            'percentage.numeric' => 'Kortingspercentage moet een nummer zijn ',
+            'percentage.integer' => 'Kortingspercentage moet een getal zijn tussen 0 en 99',
+            'times_price.numeric' => 'Prijsverhouding moet een getal zijn'
 
         ];
     }

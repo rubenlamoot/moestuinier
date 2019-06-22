@@ -74,9 +74,9 @@ class MenuController extends Controller
         $type = Type::findOrFail($request['type']);
 
         if($type->discount == 1){
-            $price = number_format(($product->price * 2) - (($product->price * 2) * $type->percentage / 100), 2);
+            $price = number_format(($product->price * $type->times_price) - (($product->price * $type->times_price) * $type->percentage / 100), 2);
         }else{
-            $price = $product->price;
+            $price = $product->price * $type->times_price;
         }
         Cart::add($product->id, $product->name, $request['pieces'], $price, 0, ['type' => $type->name, 'photo' => $product->photo, 'stock' => $product->stock]);
 //        dd(Cart::content());
