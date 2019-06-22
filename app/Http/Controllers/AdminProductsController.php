@@ -21,7 +21,7 @@ class AdminProductsController extends Controller
     public function index()
     {
         //
-        $products = Product::all();
+        $products = Product::with('level2.level1', 'types')->get();
 
         return view('admin.products.index', compact('products'));
     }

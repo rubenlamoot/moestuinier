@@ -20,7 +20,7 @@ class AdminUsersController extends Controller
     public function index()
     {
         //
-        $users = User::all();
+        $users = User::with('roles')->get();
         return view('admin.users.index', compact('users'));
     }
 
@@ -65,7 +65,7 @@ class AdminUsersController extends Controller
     public function edit($id)
     {
         //
-        $user = User::findOrFail($id);
+        $user = User::with('roles', 'address.city.country')->findOrFail($id);
         $roles = Role::all();
         $countries = Country::all();
         $user_roles = $user->roles;
