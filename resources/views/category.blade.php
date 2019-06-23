@@ -16,14 +16,12 @@
                 </ol>
             </nav>
 
-            <h2 class="text-success mb-5">{{$level2Cat->name}}</h2>
+            <h2 class="text-success mb-5">@if ($level2Cat->id == 0) Nieuwe artikelen @else {{$level2Cat->name}} @endif</h2>
 
             <section id="pageNumberUp">
                 <div class="row mt-3">
-                    <div class="col-12 col-sm-1 d-flex align-items-center">
-
+                    <div class="col-12 col-sm-1 @if ($level2Cat->id == 0) d-none @else d-flex align-items-center @endif">
                         <form action="{{route('showProducts', $level2Cat->id)}}" name="prodForm">
-
                             <div class="form-group">
                                 <label for="pageSelect">Toon:</label>
                                 <select id="pageSelect" name="pageSelect" onchange="document.prodForm.submit()">
@@ -42,35 +40,6 @@
                         {{$products->links()}}
                     </div>
                 </div>
-                {{--<div class="row mb-3">--}}
-                    {{--<div class="col-12 col-sm-1 d-flex align-items-center">--}}
-                        {{--<div class="form-group">--}}
-                            {{--<label for="selectAantal">Toon:</label>--}}
-                            {{--<select id="selectAantal">--}}
-                                {{--<option value="1">4</option>--}}
-                                {{--<option value="2" selected>8</option>--}}
-                                {{--<option value="3">12</option>--}}
-                                {{--<option value="4">16</option>--}}
-                                {{--<option value="5">20</option>--}}
-                                {{--<option value="6">24</option>--}}
-                            {{--</select>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="col-12 col-sm-11">--}}
-                        {{--<div class="d-inline-block">--}}
-                            {{--<p class="text-center">Aantal: 8 van 24</p>--}}
-                            {{--<nav aria-label="pagina navigatie">--}}
-                                {{--<ul class="pagination">--}}
-                                    {{--<li class="page-item disabled"><a class="page-link" href="category.html#myBreadcrumb" tabindex="-1">Vorige</a></li>--}}
-                                    {{--<li class="page-item active"><a class="page-link" href="category.html#myBreadcrumb">1 <span class="sr-only">(current)</span></a></li>--}}
-                                    {{--<li class="page-item"><a class="page-link" href="category.html#myBreadcrumb">2</a></li>--}}
-                                    {{--<li class="page-item"><a class="page-link" href="category.html#myBreadcrumb">3</a></li>--}}
-                                    {{--<li class="page-item"><a class="page-link" href="category.html#myBreadcrumb">Volgende</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</nav>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
             </section>
 
             <section id="categoryList">
@@ -99,16 +68,6 @@
                         {{$products->links()}}
                     </div>
                 </div>
-                {{--<p class="text-center">Aantal: 8 van 24</p>--}}
-                {{--<nav aria-label="pagina navigatie">--}}
-                    {{--<ul class="pagination justify-content-center">--}}
-                        {{--<li class="page-item disabled"><a class="page-link" href="category.html#myBreadcrumb" tabindex="-1">Vorige</a></li>--}}
-                        {{--<li class="page-item active"><a class="page-link" href="category.html#myBreadcrumb">1 <span class="sr-only">(current)</span></a></li>--}}
-                        {{--<li class="page-item"><a class="page-link" href="category.html#myBreadcrumb">2</a></li>--}}
-                        {{--<li class="page-item"><a class="page-link" href="category.html#myBreadcrumb">3</a></li>--}}
-                        {{--<li class="page-item"><a class="page-link" href="category.html#myBreadcrumb">Volgende</a></li>--}}
-                    {{--</ul>--}}
-                {{--</nav>--}}
             </section>
 
         </main>

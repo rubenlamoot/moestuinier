@@ -27,6 +27,14 @@ class MenuController extends Controller
 
     }
 
+    public function showNew(){
+        $products = Product::where('new', 1)->paginate(8);
+        $level2Cat = new Level2Category();
+        $level2Cat->id = 0;
+        $level2Cat->name = 'Nieuw';
+        return view('category', compact('products', 'level2Cat'));
+    }
+
     public function showProduct($id){
 
         $product = Product::findOrFail($id);

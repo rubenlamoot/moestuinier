@@ -71,11 +71,11 @@
 
                     <ul class="list-unstyled pr-4">
                         <li class="nav-item">
-                            <a class="nav-link text-secondary" href="category.php#myBreadcrumb">Nieuw</a>
+                            <a class="nav-link text-secondary" href="{{route('showNew')}}">Nieuw</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-secondary" href="category.php#myBreadcrumb">Populair</a>
-                        </li>
+                        {{--<li class="nav-item">--}}
+                            {{--<a class="nav-link text-secondary" href="category.php#myBreadcrumb">Populair</a>--}}
+                        {{--</li>--}}
                     </ul>
                 </div>
             </nav>
