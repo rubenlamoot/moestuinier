@@ -138,7 +138,7 @@
                                             @for ($i = 0; $i < $total; $i++)
                                             <div class="col-sm-6 col-lg-3 mb-2">
                                                 <div class="card d-flex flex-row flex-lg-column card_product">
-                                                    <img class="card-img-top img-product img-fluid" src="{{asset('images/products/' . $related_products[$i]['photo'])}}" alt="{{$related_products[$i]['name']}}">
+                                                    <a href="{{route('product', $related_products[$i]['id'])}}"><img class="card-img-top img-product img-fluid" src="{{asset('images/products/' . $related_products[$i]['photo'])}}" alt="{{$related_products[$i]['name']}}"></a>
                                                     <div class="card-body">
                                                         <h3 class="card-title productName">{{$related_products[$i]['name']}}</h3>
                                                         <p class="card-text prijs">€ {{$related_products[$i]['price']}}</p>
@@ -150,7 +150,7 @@
                                             @for ($i = 0; $i < 4; $i++)
                                                 <div class="col-sm-6 col-lg-3 mb-2">
                                                     <div class="card d-flex flex-row flex-lg-column card_product">
-                                                        <img class="card-img-top img-product img-fluid" src="{{asset('images/products/' . $related_products[$i]['photo'])}}" alt="{{$related_products[$i]['name']}}">
+                                                        <a href="{{route('product', $related_products[$i]['id'])}}"><img class="card-img-top img-product img-fluid" src="{{asset('images/products/' . $related_products[$i]['photo'])}}" alt="{{$related_products[$i]['name']}}"></a>
                                                         <div class="card-body">
                                                             <h3 class="card-title productName">{{$related_products[$i]['name']}}</h3>
                                                             <p class="card-text prijs">€ {{$related_products[$i]['price']}}</p>
@@ -167,7 +167,7 @@
                                         @for ($i = 4; $i < $total; $i++)
                                             <div class="col-sm-6 col-lg-3 mb-2">
                                                 <div class="card d-flex flex-row flex-lg-column card_product">
-                                                    <img class="card-img-top img-product img-fluid" src="{{asset('images/products/' . $related_products[$i]['photo'])}}" alt="{{$related_products[$i]['name']}}">
+                                                    <a href="{{route('product', $related_products[$i]['id'])}}"><img class="card-img-top img-product img-fluid" src="{{asset('images/products/' . $related_products[$i]['photo'])}}" alt="{{$related_products[$i]['name']}}"></a>
                                                     <div class="card-body">
                                                         <h3 class="card-title productName">{{$related_products[$i]['name']}}</h3>
                                                         <p class="card-text prijs">€ {{$related_products[$i]['price']}}</p>

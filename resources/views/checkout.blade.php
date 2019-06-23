@@ -191,7 +191,7 @@
                                                 </div>
                                                 <div class="col-md-2 d-flex flex-md-column my-auto">
                                                     <p class="mb-0 d-md-none">Subtotaal (incl Btw) : &nbsp;</p>
-                                                    <p class="prijs">€ {{number_format($cart->total * $cart->qty, 2)}}</p>
+                                                    <p class="prijs">€ {{number_format($cart->total, 2)}}</p>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -205,13 +205,13 @@
                                             </div>
                                             <div class="col-4 px-0 border-left border-secondary text-center">
                                                 <p class="subTotal border-bottom border-secondary mb-0 py-2">€ {{Cart::total()}}</p>
-                                                <p class="shipCost border-bottom border-secondary mb-0 py-2">€ {{$delivery->city->country->shipment}}</p>
+                                                <p class="shipCost border-bottom border-secondary mb-0 py-2">€ {{$ship_cost}}</p>
                                                 <p class="discountVoucher border-bottom border-secondary mb-0 py-2">€ 0.00</p>
-                                                <p class="Total prijs mb-0 py-2">€ {{Cart::total() + $delivery->city->country->shipment}}</p>
+                                                <p class="Total prijs mb-0 py-2">€ {{Cart::total() + $ship_cost}}</p>
                                             </div>
                                         </div>
 
-                                        <a href="{{route('step3', $delivery->id)}}" class="btn btn-dark text-uppercase float-right mb-3">naar betalen</a>
+                                        <a href="{{route('step3')}}" class="btn btn-dark text-uppercase float-right mb-3">naar betalen</a>
                                     </div>
                                 </div>
                             </div>
@@ -229,7 +229,7 @@
                                     <div class="card-body">
                                         <h3 class="text-uppercase text-secondary border-bottom border-secondary text-right mt-3 mt-md-0 pb-3">Klik op de betaal knop</h3>
 
-                                    <pay-stripe route={{route('toPay', $delivery->id)}} :cart-total={{(Cart::total() + $delivery->city->country->shipment) * 100}}></pay-stripe>
+                                    <pay-stripe route={{route('toPay')}} :cart-total={{(Cart::total() + $ship_cost) * 100}}></pay-stripe>
                                     </div>
                                 </div>
                             </div>
