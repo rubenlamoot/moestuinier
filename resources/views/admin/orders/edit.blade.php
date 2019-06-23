@@ -28,7 +28,13 @@
                         @foreach($orderItems as $item)
                             <tr>
                                 <td>{{$item->product_id}}</td>
-                                <td>{{$item->product->name}}</td>
+                                @php($product = \App\Product::withTrashed()->where('id', $item->product_id )->first())
+                                <td>{{$product->name}}</td>
+                                {{--@if ($product = \App\Product::where('id', $item->product_id )->exists())--}}
+                                    {{--<td>{{$item->product->name}}</td>--}}
+                                {{--@else--}}
+                                    {{--<td>Verwijderd product</td>--}}
+                                {{--@endif--}}
                                 <td>{{$item->quantity}}</td>
                                 <td>{{$item->price}}</td>
                                 <td>{{$item->type}}</td>

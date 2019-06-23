@@ -98,5 +98,9 @@ class Level2CategoryController extends Controller
     public function destroy($id)
     {
         //
+        $level2 = Level2Category::findOrFail($id);
+        $level2->delete();
+
+        return redirect('admin\level2categories');
     }
 }

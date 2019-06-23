@@ -43,21 +43,21 @@ class MonthsTableSeeder extends Seeder
         ]);
         DB::table('months')->insert([
             'month' => 'Mei',
-            'month_text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...',
+            'month_text' => 'Deze maand gaat het hard in de moestuin: plots moeten alle planten naar buiten. Het is even doorbijten, want ook onkruid zit op kruissnelheid.',
             'month_pic' => 'mei.JPG',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('months')->insert([
             'month' => 'Juni',
-            'month_text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...',
+            'month_text' => 'Omring je planten met goede zorgen, geef ze water waar nodig en plant links en rechts nog wat bij, zodat je moestuin altijd mooi vol staat.',
             'month_pic' => 'juni.jpg',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('months')->insert([
             'month' => 'Juli',
-            'month_text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores autem consectetur debitis deserunt ea earum eius illum ipsam mollitia natus numquam ...',
+            'month_text' => 'Deze maand is het volop oogsten geblazen en pluk je de vruchten van je vele inspanningen. Het werk loop stilletjes aan op zijn einde.',
             'month_pic' => 'juli.jpg',
             'created_at' => now(),
             'updated_at' => now()

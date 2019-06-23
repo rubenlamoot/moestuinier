@@ -219,7 +219,7 @@ class AdminProductsController extends Controller
     }
 
     public function lowStock(){
-        $products = Product::where('stock', '<', 10)->get();
+        $products = Product::with('level2.level1', 'types')->where('stock', '<', 10)->get();
         return view('admin.products.stock', compact('products'));
     }
 }

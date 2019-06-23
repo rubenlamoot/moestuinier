@@ -124,7 +124,7 @@ class CheckoutController extends Controller
     }
 
     public function store(){
-        
+
         $delivery = Delivery::findOrFail(session('delivery_id'));
         $ship_cost = session('shipment');
 

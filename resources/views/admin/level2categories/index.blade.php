@@ -69,6 +69,15 @@
                     <button class="btn btn-primary" type="submit">Categorie Maken</button>
                 </form>
 
+                <form method="post" action="{{route('level2categories.destroy', $editCat->id)}}">
+                    @method('DELETE')
+                    @csrf
+                    <div class="form-group mt-5">
+                        <label for="name">Naam:</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{$editCat->name}}">
+                    </div>
+                    <button class="btn btn-danger" type="submit">Verwijderen</button>
+                </form>
             </div>
         </div>
     </main>

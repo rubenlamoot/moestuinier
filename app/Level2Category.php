@@ -13,7 +13,7 @@ class Level2Category extends Model
 
     protected $fillable = ['name', 'level1_category_id'];
 
-    protected $softCascade = ['levels3'];
+    protected $softCascade = ['products'];
 
     public function level1 ()
     {
