@@ -9,4 +9,9 @@
 <p>php artisan key:geneate</p>
 <p>php artisan migrate</p>
 <p>php artisan db:seed</p>
+
+<h2>Gebruikers om in te loggen</h2>
+<p>admin : rubenlamoot@test.com , paswoord: 123456</p>
+<p>user : test1@gmail.com , paswoord: 123456</p>
+<br>
 <p>Enjoy</p>
