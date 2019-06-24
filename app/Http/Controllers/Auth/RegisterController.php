@@ -83,7 +83,7 @@ class RegisterController extends Controller
             'house_nr' => $data['house_nr'],
             'bus_nr' => $data['bus_nr'],
             'city_id' => $city->id,
-            'country_id' => $data['country'],
+//            'country_id' => $data['country'],
         ]);
         $news = Arr::has($data, 'newsletter');
 

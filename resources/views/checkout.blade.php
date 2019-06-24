@@ -62,7 +62,7 @@
                                                         <select class="form-control" name="country" id="country">
                                                             @php($countries = \App\Country::all())
                                                             @foreach($countries as $country)
-                                                                <option value="{{$country->id}}" @auth @if(Auth::user()->address->country->id == $country->id) selected @endif @endauth>{{$country->country}}</option>
+                                                                <option value="{{$country->id}}" @auth @if(Auth::user()->address->city->country->id == $country->id) selected @endif @endauth>{{$country->country}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -126,7 +126,7 @@
                                                 <label for="country2" class="pr-3 pt-1">Land:</label>
                                                 <select class="form-control" id="country2" name="country">
                                                     @foreach($countries as $country)
-                                                        <option value="{{$country->id}}" @auth @if(Auth::user()->address->country->id == $country->id) selected @endif @endauth>{{$country->country}}</option>
+                                                        <option value="{{$country->id}}" @auth @if(Auth::user()->address->city->country->id == $country->id) selected @endif @endauth>{{$country->country}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

@@ -31,7 +31,7 @@
                         <div class="d-flex flex-row">
                             <div class="form-group">
                                 <label for="sows">Zaaitabel:</label>
-                                <select multiple id="sows" name="sows[]" class="form-control">
+                                <select multiple id="sows" name="sows[]" class="form-control" style="height: 250px">
                                     <option value="jan" @if($product->sow->jan == 1) selected @endif>januari</option>
                                     <option value="feb" @if($product->sow->feb == 1) selected @endif>februari</option>
                                     <option value="mar" @if($product->sow->mar == 1) selected @endif>maart</option>
@@ -48,7 +48,7 @@
                             </div>
                             <div class="form-group ml-5">
                                 <label for="harvests">Oogsttabel:</label>
-                                <select multiple id="harvests" name="harvests[]" class="form-control">
+                                <select multiple id="harvests" name="harvests[]" class="form-control" style="height: 250px">
                                     <option value="jan" @if($product->harvest->jan == 1) selected @endif>januari</option>
                                     <option value="feb" @if($product->harvest->feb == 1) selected @endif>februari</option>
                                     <option value="mar" @if($product->harvest->mar == 1) selected @endif>maart</option>

@@ -8,7 +8,7 @@ class Address extends Model
 {
     //
     protected $fillable = [
-        'street', 'house_nr', 'bus_nr', 'city_id', 'country_id'
+        'street', 'house_nr', 'bus_nr', 'city_id'
     ];
 
     public function users()
@@ -16,10 +16,10 @@ class Address extends Model
         return $this->hasMany('App\User');
     }
 
-    public function country()
-    {
-        return $this->belongsTo('App\Country');
-    }
+//    public function country()
+//    {
+//        return $this->belongsTo('App\Country');
+//    }
 
     public function city()
     {

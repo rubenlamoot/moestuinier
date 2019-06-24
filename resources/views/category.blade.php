@@ -37,7 +37,7 @@
                         </form>
                     </div>
                     <div class="col-12">
-                        {{$products->links()}}
+                        {{$products->appends(request()->except('page'))->links()}}
                     </div>
                 </div>
             </section>
@@ -65,7 +65,7 @@
             <section id="pageNumberDown">
                 <div class="row mt-3">
                     <div class="col-12">
-                        {{$products->links()}}
+                        {{$products->appends(request()->except('page'))->links()}}
                     </div>
                 </div>
             </section>

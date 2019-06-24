@@ -79,7 +79,7 @@
                         <label for="countries">Land:</label>
                         <select id="countries" name="country_id" class="form-control">
                             @foreach($countries as $country)
-                                <option value="{{$country->id}}" @if($user->address->country->id == $country->id) selected @endif> {{$country->country}} </option>
+                                <option value="{{$country->id}}" @if($user->address->city->country->id == $country->id) selected @endif> {{$country->country}} </option>
                             @endforeach
                         </select>
                     </div>
@@ -104,7 +104,7 @@
                 </div>
             </div>
             <button class="btn btn-primary" type="submit">Wijzigen</button>
-
+            @include('errors.form-error')
         </form>
     </main>
 @stop

@@ -19,7 +19,7 @@ class CreateAddressesTable extends Migration
             $table->string('house_nr');
             $table->string('bus_nr')->nullable();
             $table->integer('city_id')->index()->unsigned();
-            $table->integer('country_id')->index()->unsigned();
+//            $table->integer('country_id')->index()->unsigned();
             $table->timestamps();
         });
     }

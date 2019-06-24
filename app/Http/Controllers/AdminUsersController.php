@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Address;
 use App\City;
 use App\Country;
+use App\Http\Requests\UsersEditRequest;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -84,7 +85,7 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersEditRequest $request, $id)
     {
         //
 
@@ -99,7 +100,7 @@ class AdminUsersController extends Controller
         $city = City::firstOrCreate($city_input);
 
         //update het adres
-        $address_input = $request->only('street', 'house_nr', 'bus_nr', 'country_id');
+        $address_input = $request->only('street', 'house_nr', 'bus_nr');
         $address_input['city_id'] = $city->id;
         $address = Address::firstOrCreate($address_input);
 

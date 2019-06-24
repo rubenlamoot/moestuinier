@@ -44,7 +44,7 @@ class CheckoutController extends Controller
             'house_nr' => $request['house_nr'],
             'bus_nr' => $request['bus_nr'],
             'city_id' => $city->id,
-            'country_id' => $request['country'],
+//            'country_id' => $request['country'],
         ]);
 
         if(Auth::check()){

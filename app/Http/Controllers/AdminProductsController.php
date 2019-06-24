@@ -182,9 +182,11 @@ class AdminProductsController extends Controller
         if($file = $request->file('photo')){
             $old_photo = $product->photo;
             if($old_photo){
-                $old_file = "images/products/" . $old_photo;
-                if (file_exists($old_file)) {
-                    @unlink($old_file);
+                if($old_photo != 'product1.jpg'){
+                    $old_file = "images/products/" . $old_photo;
+                    if (file_exists($old_file)) {
+                        @unlink($old_file);
+                    }
                 }
             }
             $name = time() . $file->getClientOriginalName();
